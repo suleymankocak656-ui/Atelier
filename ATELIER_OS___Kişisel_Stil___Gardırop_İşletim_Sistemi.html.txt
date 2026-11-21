@@ -1,0 +1,3830 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>ATELIER OS — Kişisel Stil &amp; Gardırop İşletim Sistemi</title>
+
+  <!-- iPhone / iOS Standalone Web App (Full-Screen PWA) Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ATELIER" />
+  <meta name="theme-color" content="#F7F6F3" id="theme-color-meta" />
+
+  <!-- Luxury Monogram SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='38' fill='%230B0B0C'/%3E%3Crect x='14' y='14' width='152' height='152' rx='26' fill='none' stroke='%23D6C3A5' stroke-width='1.5' stroke-opacity='0.65'/%3E%3Crect x='20' y='20' width='140' height='140' rx='21' fill='none' stroke='%23D6C3A5' stroke-width='0.75' stroke-opacity='0.35'/%3E%3Ctext x='90' y='108' text-anchor='middle' font-family='Georgia,serif' font-size='84' font-weight='500' fill='%23F7F6F3'%3EA%3C/text%3E%3Ctext x='90' y='140' text-anchor='middle' font-family='-apple-system,sans-serif' font-size='13' letter-spacing='5' fill='%23D6C3A5'%3EATELIER%3C/text%3E%3C/svg%3E" />
+
+  <!-- Dynamic 180x180 PNG Apple Touch Icon & Web App Manifest (populated synchronously below) -->
+  <link rel="apple-touch-icon" sizes="180x180" id="apple-touch-icon" href="" />
+  <link rel="manifest" id="pwa-manifest" href="" />
+
+  <!-- Synchronous Custom 180x180 iPhone App Icon & Manifest Generator -->
+  <script>
+    (function generateAtelierAppIcon() {
+      try {
+        var size = 180;
+        var canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        function roundRectPath(c, x, y, w, h, r) {
+          c.beginPath();
+          c.moveTo(x + r, y);
+          c.arcTo(x + w, y, x + w, y + h, r);
+          c.arcTo(x + w, y + h, x, y + h, r);
+          c.arcTo(x, y + h, x, y, r);
+          c.arcTo(x, y, x + w, y, r);
+          c.closePath();
+        }
+
+        // Deep Obsidian full background (iOS applies its own squircle mask)
+        var bgGrad = ctx.createLinearGradient(0, 0, size, size);
+        bgGrad.addColorStop(0, '#121215');
+        bgGrad.addColorStop(1, '#080809');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, size, size);
+
+        // Subtle champagne radial glow at top
+        var glow = ctx.createRadialGradient(size * 0.5, size * 0.25, 8, size * 0.5, size * 0.5, size * 0.65);
+        glow.addColorStop(0, 'rgba(214, 195, 165, 0.16)');
+        glow.addColorStop(1, 'rgba(214, 195, 165, 0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, size, size);
+
+        // Outer hairline champagne gold border
+        roundRectPath(ctx, 13, 13, size - 26, size - 26, 28);
+        ctx.strokeStyle = 'rgba(214, 195, 165, 0.72)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Inner hairline double border
+        roundRectPath(ctx, 20, 20, size - 40, size - 40, 22);
+        ctx.strokeStyle = 'rgba(214, 195, 165, 0.30)';
+        ctx.lineWidth = 0.85;
+        ctx.stroke();
+
+        // Editorial Serif 'A' Monogram
+        ctx.fillStyle = '#F7F6F3';
+        ctx.font = '500 84px Didot, "Bodoni MT", "Playfair Display", Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('A', size / 2, 84);
+
+        // Subtle gold divider dot
+        ctx.fillStyle = '#D6C3A5';
+        ctx.beginPath();
+        ctx.arc(size / 2, 124, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Tracked 'ATELIER' wordmark below
+        ctx.fillStyle = '#D6C3A5';
+        ctx.font = '600 12px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
+        var letters = 'ATELIER'.split('');
+        var spacing = 4.5;
+        var totalW = letters.reduce(function(acc, ch) { return acc + ctx.measureText(ch).width; }, 0) + spacing * (letters.length - 1);
+        var curX = (size - totalW) / 2;
+        ctx.textAlign = 'left';
+        letters.forEach(function(ch) {
+          ctx.fillText(ch, curX, 143);
+          curX += ctx.measureText(ch).width + spacing;
+        });
+
+        var pngDataUrl = canvas.toDataURL('image/png');
+        window.__ATELIER_ICON_PNG__ = pngDataUrl;
+
+        var appleIcon = document.getElementById('apple-touch-icon');
+        if (appleIcon) appleIcon.setAttribute('href', pngDataUrl);
+
+        // Dynamic standalone Web App Manifest
+        var manifestObj = {
+          name: 'ATELIER — Kişisel Stil OS',
+          short_name: 'ATELIER',
+          description: 'Kişisel stil, dijital gardırop ve akıllı kombin işletim sistemi.',
+          start_url: '.',
+          display: 'standalone',
+          orientation: 'portrait',
+          background_color: '#0B0B0C',
+          theme_color: '#0B0B0C',
+          icons: [
+            { src: pngDataUrl, sizes: '180x180', type: 'image/png', purpose: 'any maskable' }
+          ]
+        };
+        var manifestLink = document.getElementById('pwa-manifest');
+        if (manifestLink) {
+          manifestLink.setAttribute('href', 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifestObj)));
+        }
+      } catch (e) {
+        // Silent fallback if canvas is restricted
+      }
+    })();
+  </script>
+
+  <style>
+    /* ==========================================================================
+       ATELIER OS — APPLE LUXURY EDITORIAL DESIGN SYSTEM (PURE CSS)
+       ========================================================================== */
+    :root {
+      --bg-canvas: #F7F6F3;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #EFEEE9;
+      --bg-glass: rgba(247, 246, 243, 0.86);
+      --border: #E5E4DE;
+      --border-strong: #D1CFC7;
+      --text-primary: #141413;
+      --text-secondary: #5A5955;
+      --text-muted: #8A8881;
+      --accent: #A68A5B;
+      --accent-gold: #D6C3A5;
+      --accent-soft: rgba(166, 138, 91, 0.14);
+      --accent-text: #7A6137;
+      --btn-primary-bg: #141413;
+      --btn-primary-text: #FFFFFF;
+      --success: #1F7A52;
+      --success-soft: rgba(31, 122, 82, 0.12);
+      --warning: #B4690E;
+      --warning-soft: rgba(180, 105, 14, 0.13);
+      --danger: #C0392B;
+      --danger-soft: rgba(192, 57, 43, 0.12);
+      --shadow-sm: 0 1px 2px rgba(20, 20, 19, 0.04);
+      --shadow-md: 0 10px 30px rgba(20, 20, 19, 0.06);
+      --shadow-lg: 0 24px 60px rgba(20, 20, 19, 0.14);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+      --font-serif: "Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
+      --sidebar-w: 260px;
+    }
+
+    html.dark {
+      --bg-canvas: #0B0B0C;
+      --bg-surface: #161618;
+      --bg-subtle: #202024;
+      --bg-glass: rgba(11, 11, 12, 0.86);
+      --border: #27272B;
+      --border-strong: #3A3A40;
+      --text-primary: #F5F5F2;
+      --text-secondary: #A9A8A3;
+      --text-muted: #767570;
+      --accent: #C7AA78;
+      --accent-gold: #D6C3A5;
+      --accent-soft: rgba(214, 195, 165, 0.16);
+      --accent-text: #E2CCA7;
+      --btn-primary-bg: #F5F5F2;
+      --btn-primary-text: #0B0B0C;
+      --success: #34D399;
+      --success-soft: rgba(52, 211, 153, 0.14);
+      --warning: #FBBF24;
+      --warning-soft: rgba(251, 191, 36, 0.14);
+      --danger: #F87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.65);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: none;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .serif { font-family: var(--font-serif); }
+    .tabular { font-variant-numeric: tabular-nums; }
+    .hidden { display: none !important; }
+
+    /* ==========================================================================
+       LAYOUT: DESKTOP SIDEBAR + iOS SAFE-AREA MOBILE HEADER & BOTTOM DOCK
+       ========================================================================== */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-right: 1px solid var(--border);
+      padding: calc(24px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 40;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 10px;
+      margin-bottom: 24px;
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: #0B0B0C;
+      color: #F7F6F3;
+      border: 1px solid rgba(214, 195, 165, 0.45);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease;
+    }
+
+    .nav-btn:hover { background: var(--bg-subtle); color: var(--text-primary); }
+
+    .nav-btn.active {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: var(--accent-text);
+    }
+
+    .nav-btn.active .nav-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--btn-primary-text);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Mobile Header with iOS Safe Area Top */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0; z-index: 40;
+      padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Mobile Bottom Dock with iOS Safe Area Bottom */
+    .mobile-dock {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 40;
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      padding: 7px 6px calc(7px + env(safe-area-inset-bottom));
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2px;
+    }
+
+    .dock-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 2px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      min-height: 44px;
+    }
+
+    .dock-btn.active {
+      color: var(--text-primary);
+      font-weight: 600;
+      background: var(--bg-subtle);
+    }
+
+    .main-content {
+      margin-left: var(--sidebar-w);
+      min-height: 100vh;
+      padding: 30px 36px 64px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { display: none; }
+      .mobile-header { display: flex; }
+      .mobile-dock { display: grid; }
+      .main-content {
+        margin-left: 0;
+        padding: 18px 16px calc(92px + env(safe-area-inset-bottom));
+      }
+    }
+
+    /* ==========================================================================
+       iPHONE INSTALL BANNER (DISMISSIBLE)
+       ========================================================================== */
+    .ios-tip-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 18px;
+    }
+
+    .ios-tip-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .ios-icon-thumb {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(214, 195, 165, 0.45);
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .ios-icon-preview-lg {
+      width: 88px; height: 88px;
+      border-radius: 22px;
+      border: 1px solid rgba(214, 195, 165, 0.5);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+      display: block;
+      margin: 0 auto 14px;
+    }
+
+    /* ==========================================================================
+       SHARED COMPONENTS
+       ========================================================================== */
+    .page-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-text);
+      margin: 0 0 4px;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 4px 0 0;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover { border-color: var(--border-strong); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity 0.18s ease, transform 0.15s ease, background 0.18s ease, border-color 0.18s ease;
+      white-space: nowrap;
+      min-height: 36px;
+    }
+
+    .btn:active { transform: scale(0.97); }
+    .btn-sm { padding: 7px 14px; font-size: 12px; min-height: 34px; }
+    .btn-xs { padding: 5px 11px; font-size: 11.5px; min-height: 30px; }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .btn-gold {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+    .btn-gold:hover { opacity: 0.92; }
+
+    .btn-secondary {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--border-strong); }
+
+    .btn-success {
+      background: var(--success);
+      color: #FFFFFF;
+    }
+
+    .btn-danger-soft {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .icon-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+      transition: all 0.16s ease;
+    }
+    .icon-btn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+    .icon-btn.locked { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+      transition: all 0.16s ease;
+    }
+    .pill:hover { color: var(--text-primary); border-color: var(--border-strong); }
+    .pill.active {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-neutral { background: var(--bg-subtle); color: var(--text-secondary); }
+    .badge-gold { background: var(--accent-soft); color: var(--accent-text); }
+    .badge-success { background: var(--success-soft); color: var(--success); }
+    .badge-warning { background: var(--warning-soft); color: var(--warning); }
+    .badge-danger { background: var(--danger-soft); color: var(--danger); }
+
+    .field-label {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input, .select {
+      width: 100%;
+      height: 40px;
+      padding: 0 13px;
+      border-radius: 12px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      font-size: 14px; /* prevents iOS Safari auto-zoom on focus */
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+    .input:focus, .select:focus {
+      border-color: var(--accent);
+      background: var(--bg-surface);
+    }
+
+    .swatch-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(128, 128, 128, 0.35);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    /* ==========================================================================
+       STUDIO: SPOTLIGHT NLP BAR, FILTERS, OUTFIT BOARD & COACH
+       ========================================================================== */
+    .spotlight-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 26px;
+      padding: 15px 18px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 18px;
+    }
+
+    .spotlight-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spotlight-icon {
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .spotlight-input {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+    }
+    .spotlight-input::placeholder { color: var(--text-muted); }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .intent-bar {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tryon-banner {
+      background: linear-gradient(120deg, var(--accent-soft), transparent 70%), var(--bg-surface);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 720px) { .filter-grid { grid-template-columns: 1fr; } }
+
+    .studio-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.85fr) minmax(300px, 1fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 18px;
+    }
+    @media (max-width: 1120px) { .studio-layout { grid-template-columns: 1fr; } }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .outfit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 820px) { .outfit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .outfit-grid { grid-template-columns: 1fr; } }
+
+    .garment-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .garment-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+    .garment-card.is-hero { border-color: var(--text-primary); box-shadow: 0 0 0 1px var(--text-primary); }
+    .garment-card.is-virtual { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+    .garment-visual {
+      height: 110px;
+      border-radius: 14px;
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .garment-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+    .garment-swatch-circle {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.2), 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .garment-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    /* Style Coach Panel */
+    .coach-panel { position: sticky; top: 24px; }
+
+    .score-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 14px 0;
+    }
+
+    .ring-wrap {
+      position: relative;
+      width: 92px; height: 92px;
+      flex-shrink: 0;
+    }
+
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ring-score {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .ring-progress {
+      transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1), stroke 0.3s ease;
+    }
+
+    .metric-item { margin-bottom: 14px; }
+    .metric-item:last-child { margin-bottom: 0; }
+    .metric-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .bar-track {
+      height: 6px;
+      border-radius: 99px;
+      background: var(--bg-subtle);
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--text-primary);
+      transition: width 0.5s ease;
+    }
+    .metric-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .nlp-coach-box {
+      background: var(--accent-soft);
+      border: 1px solid rgba(166, 138, 91, 0.35);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+
+    /* ==========================================================================
+       DISCOVER (STYLE TINDER)
+       ========================================================================== */
+    .tinder-stage {
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .swipe-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+      touch-action: pan-y;
+    }
+    .swipe-card.go-left { transform: translateX(-110%) rotate(-10deg); opacity: 0; }
+    .swipe-card.go-right { transform: translateX(110%) rotate(10deg); opacity: 0; }
+
+    .tinder-items-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    @media (max-width: 520px) { .tinder-items-grid { grid-template-columns: 1fr; } }
+
+    .tinder-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .tinder-circle {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.16s ease;
+    }
+    .tinder-circle:hover { transform: scale(1.06); }
+    .tinder-circle:active { transform: scale(0.95); }
+
+    /* ==========================================================================
+       GRIDS & SEGMENTED CONTROLS
+       ========================================================================== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .grid-7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+
+    @media (max-width: 1180px) {
+      .grid-7 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .grid-7 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .grid-7, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .segmented {
+      display: inline-flex;
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .seg-btn {
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .seg-btn.active {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px) { .store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+    .store-card {
+      padding: 13px;
+      border-radius: 14px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      transition: border-color 0.16s ease, transform 0.16s ease;
+    }
+    .store-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: var(--bg-subtle);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .checklist-item.checked {
+      background: var(--success-soft);
+      border-color: var(--success);
+      opacity: 0.78;
+    }
+
+    /* ==========================================================================
+       MODALS & TOAST
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(10, 10, 12, 0.56);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));
+    }
+
+    .modal-sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-sheet.wide { max-width: 780px; }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .ios-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: var(--bg-subtle);
+      margin-bottom: 8px;
+    }
+    .ios-step-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(20px);
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      padding: 11px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    @media (max-width: 1024px) {
+      .toast { bottom: calc(82px + env(safe-area-inset-bottom)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== DESKTOP SIDEBAR ==================== -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand" data-nav="studio">
+        <div class="brand-mark">A</div>
+        <div>
+          <h1 class="brand-title">ATELIER</h1>
+          <div class="brand-sub">Style OS • iOS Ready</div>
+        </div>
+      </div>
+
+      <nav class="nav-list">
+        <button class="nav-btn active" data-nav="studio">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+            Stüdyo
+          </span>
+          <span id="badge-tryon" class="nav-badge hidden">Deneme</span>
+        </button>
+        <button class="nav-btn" data-nav="discover">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2c2.5 3 6 6.2 6 11a6 6 0 1 1-12 0c0-2.8 1.5-5.3 3-7 0 2 1 3 2 3 0-3 1-5 1-7z"/></svg>
+            Keşfet
+          </span>
+        </button>
+        <button class="nav-btn" data-nav="wardrobe">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+            Gardırop
+          </span>
+          <span id="badge-dirty" class="nav-badge hidden">0</span>
+        </button>
+        <button class="nav-btn" data-nav="planner">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Planla &amp; Valiz
+          </span>
+        </button>
+        <button class="nav-btn" data-nav="sourcing">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Temin &amp; Alışveriş
+          </span>
+          <span id="badge-wish" class="nav-badge hidden">0</span>
+        </button>
+        <button class="nav-btn" data-nav="analytics">
+          <span class="nav-btn-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Analiz
+          </span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <button id="btn-emergency-side" class="btn btn-primary" style="width:100%;">⚡ 10 Saniyede Çık</button>
+      <button id="btn-ios-side" class="btn btn-secondary btn-sm" style="width:100%;justify-content:space-between;">
+        <span>iPhone Ana Ekran</span>
+        <span style="color:var(--accent-text);">↗</span>
+      </button>
+      <button id="btn-theme-side" class="btn btn-secondary btn-sm" style="width:100%;justify-content:space-between;">
+        <span id="theme-label">Obsidian Koyu Tema</span>
+        <span id="theme-icon">☾</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== MOBILE TOP HEADER (iOS SAFE-AREA) ==================== -->
+  <header class="mobile-header">
+    <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" data-nav="studio">
+      <div class="brand-mark" style="width:32px;height:32px;border-radius:10px;font-size:16px;">A</div>
+      <span class="serif" style="font-size:17px;font-weight:600;letter-spacing:0.14em;">ATELIER</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;">
+      <button id="btn-emergency-mob" class="btn btn-primary btn-xs">⚡ 10 Sn</button>
+      <button id="btn-ios-mob" class="icon-btn" title="iPhone Ana Ekran İkonu">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </button>
+      <button id="btn-theme-mob" class="icon-btn" title="Tema Değiştir">☾</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN WORKSPACE ==================== -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Subtle Dismissible iPhone Home Screen Tip Banner -->
+      <div id="ios-tip-banner" class="ios-tip-banner">
+        <div class="ios-tip-left">
+          <img id="ios-banner-thumb" class="ios-icon-thumb" alt="ATELIER iPhone İkonu" />
+          <div style="min-width:0;">
+            <div style="font-size:12.5px;font-weight:600;line-height:1.25;">iPhone Ana Ekran &amp; Tam Ekran Hazır</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);">Safari → Paylaş → Ana Ekrana Ekle ile adres çubuksuz uygulama olarak aç.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+          <button id="btn-ios-preview-open" class="btn btn-secondary btn-xs">İkonu Gör</button>
+          <button id="btn-dismiss-ios-tip" class="icon-btn" style="width:28px;height:28px;font-size:11px;" title="Kapat">✕</button>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 1: STÜDYO                                                    -->
+      <!-- ================================================================ -->
+      <section id="tab-studio" class="tab-section">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">Kişisel Kombin Stüdyosu</p>
+            <h2 class="page-title">Bugünün Silüeti</h2>
+          </div>
+          <span class="badge badge-neutral">Temiz dolaptan canlı hesaplanır</span>
+        </div>
+
+        <!-- APPLE SPOTLIGHT DOĞAL DİL KOMUTU -->
+        <div class="spotlight-card">
+          <form id="nl-form" class="spotlight-form">
+            <div class="spotlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+            </div>
+            <input
+              id="nl-input"
+              class="spotlight-input"
+              type="text"
+              autocomplete="off"
+              placeholder="Örn: Akşam rüzgarlı havada kahve içmeye çıkıyorum, rahat ama özenli olsun"
+            />
+            <button type="submit" class="btn btn-primary btn-sm">Oluştur →</button>
+          </form>
+
+          <div class="chip-row">
+            <span style="font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-right:4px;">Hızlı Komutlar:</span>
+            <button type="button" class="pill nl-example" data-prompt="Akşam rüzgarlı havada kahve içmeye çıkıyorum, rahat ama özenli olsun">Akşam rüzgarlı havada kahve, rahat ama özenli</button>
+            <button type="button" class="pill nl-example" data-prompt="Yarın okula yağmurlu havada koyu tonlu kombin">Okula yağmurlu havada koyu tonlu</button>
+            <button type="button" class="pill nl-example" data-prompt="Date gecesi için şık, beyaz sneaker odaklı">Date gecesi şık, beyaz sneaker odaklı</button>
+            <button type="button" class="pill nl-example" data-prompt="Ev 2'de güneşli günde toprak tonları">Ev 2'de güneşli günde toprak tonları</button>
+          </div>
+
+          <div id="nl-intent-bar" class="intent-bar hidden">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;">
+              <span style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-text);">Algılanan Niyet:</span>
+              <div id="nl-intent-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+            <button type="button" id="btn-clear-nl" class="btn btn-secondary btn-xs">Temizle ✕</button>
+          </div>
+        </div>
+
+        <!-- SANAL DENEME BANNER -->
+        <div id="tryon-banner" class="tryon-banner hidden">
+          <div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:4px;">
+              <span class="badge badge-gold">✦ Sanal Deneme • Henüz Alınmadı</span>
+              <span id="tryon-unlocks" class="badge badge-success"></span>
+            </div>
+            <strong id="tryon-title" style="font-size:15px;"></strong>
+            <p style="margin:2px 0 0;font-size:12.5px;color:var(--text-secondary);">Gerçek dolabındaki parçalarla eşleştirildi. Beğenirsen tek tıkla mağazalarda arayabilirsin.</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button id="btn-tryon-source" class="btn btn-gold btn-sm">Beğendim → Temin Et</button>
+            <button id="btn-tryon-exit" class="btn btn-secondary btn-sm">Denemeden Çık</button>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="card">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;">
+            <div>
+              <span class="field-label">Ortam</span>
+              <div id="occasion-pills" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+            <div>
+              <span class="field-label">Hava Durumu</span>
+              <div id="weather-pills" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="filter-grid">
+            <div>
+              <label class="field-label" for="select-palette">Renk Paleti Modu</label>
+              <select id="select-palette" class="select">
+                <option value="Dengeli">Dengeli (Akıllı Uyum)</option>
+                <option value="All-Black">All-Black / Monokrom</option>
+                <option value="Toprak Tonları">Toprak Tonları</option>
+                <option value="Yüksek Kontrast">Yüksek Kontrast</option>
+                <option value="Old Money">Old Money / Minimal</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="select-location">Lokasyon</label>
+              <select id="select-location" class="select">
+                <option value="Tümü">Tüm Dolaplar (Ev 1 + Ev 2)</option>
+                <option value="Ev 1">Sadece Ev 1</option>
+                <option value="Ev 2">Sadece Ev 2</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="select-hero">Odak Parça (Hero Piece)</label>
+              <select id="select-hero" class="select"></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTFIT BOARD + LIVE STYLE COACH -->
+        <div class="studio-layout">
+          <div>
+            <div class="action-bar">
+              <button id="btn-generate" class="btn btn-primary">↻ Kombini Yenile</button>
+              <button id="btn-emergency-main" class="btn btn-secondary">⚡ 10 Saniyede Çık</button>
+              <button id="btn-worn" class="btn btn-success">✓ Bugün Bunu Giydim</button>
+              <button id="btn-save-fav" class="btn btn-secondary">♡ Favorilere Kaydet</button>
+            </div>
+            <div id="studio-grid" class="outfit-grid"></div>
+          </div>
+
+          <aside class="card coach-panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <p class="eyebrow" style="margin-bottom:2px;">Canlı Değerlendirme</p>
+                <h3 class="serif" style="margin:0;font-size:22px;">Stil Koçu</h3>
+              </div>
+              <span id="coach-verdict" class="badge badge-success">Kusursuz</span>
+            </div>
+
+            <div class="score-header">
+              <div class="ring-wrap">
+                <svg width="92" height="92" viewBox="0 0 100 100" style="transform:rotate(-90deg);">
+                  <circle cx="50" cy="50" r="42" stroke="var(--bg-subtle)" stroke-width="8" fill="none" />
+                  <circle id="score-ring" class="ring-progress" cx="50" cy="50" r="42" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" fill="none" stroke-dasharray="263.89" stroke-dashoffset="26.39" />
+                </svg>
+                <div class="ring-center">
+                  <span id="coach-score" class="ring-score tabular">9.3</span>
+                  <span style="font-size:10px;color:var(--text-muted);">/ 10</span>
+                </div>
+              </div>
+              <p id="coach-summary" style="font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.5;"></p>
+            </div>
+
+            <div id="coach-nlp-box" class="nlp-coach-box hidden">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-text);margin-bottom:4px;">✦ Komutuna Özel Not</div>
+              <p id="coach-nlp-note" style="margin:0;font-size:12px;line-height:1.45;"></p>
+            </div>
+
+            <div class="divider"></div>
+            <div id="coach-metrics"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 2: KEŞFET (STYLE TINDER)                                     -->
+      <!-- ================================================================ -->
+      <section id="tab-discover" class="tab-section hidden">
+        <div class="page-header" style="justify-content:center;text-align:center;">
+          <div>
+            <p class="eyebrow">Style Tinder</p>
+            <h2 class="page-title">Kombinleri Keşfet</h2>
+            <p class="page-subtitle">Beğendiklerini sağa (→) favorile, diğerlerini sola (←) geç. Parmakla kaydırabilir veya ok tuşlarını kullanabilirsin.</p>
+          </div>
+        </div>
+
+        <div class="tinder-stage">
+          <div id="tinder-card-wrap"></div>
+          <div class="tinder-controls">
+            <button id="btn-tinder-pass" class="tinder-circle" style="background:var(--bg-surface);border:1px solid var(--border);color:var(--text-secondary);font-size:20px;" title="Geç (←)">✕</button>
+            <button id="btn-tinder-studio" class="btn btn-secondary btn-sm">Stüdyoda Aç</button>
+            <button id="btn-tinder-like" class="tinder-circle" style="background:var(--btn-primary-bg);color:var(--btn-primary-text);font-size:20px;" title="Favorile (→)">♥</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="page-header" style="margin-bottom:14px;">
+            <div>
+              <h3 class="serif" style="margin:0;font-size:22px;">Favori Kombinlerim</h3>
+              <p class="page-subtitle">Kaydettiğin tüm kombinler tek tıkla Stüdyo'da açılabilir.</p>
+            </div>
+            <span id="fav-count" class="badge badge-neutral tabular">0 Kombin</span>
+          </div>
+          <div id="favorites-grid" class="grid-3"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 3: GARDIROP                                                  -->
+      <!-- ================================================================ -->
+      <section id="tab-wardrobe" class="tab-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">Dijital Arşiv</p>
+            <h2 class="page-title">Akıllı Gardırop</h2>
+          </div>
+          <button id="btn-open-add-item" class="btn btn-primary">+ Yeni Parça Ekle</button>
+        </div>
+
+        <!-- Automatic White Sneaker Cleaning Banner if any alert exists -->
+        <div id="wardrobe-top-care-banner" class="hidden" style="margin-bottom:16px;"></div>
+
+        <div class="segmented">
+          <button class="seg-btn active" data-wsub="all">Tüm Dolap</button>
+          <button class="seg-btn" data-wsub="laundry">Kirli Sepeti <span id="sub-dirty-count" class="badge badge-warning tabular">0</span></button>
+          <button class="seg-btn" data-wsub="care">Bakım &amp; Temizlik <span id="sub-care-count" class="badge badge-danger tabular">0</span></button>
+        </div>
+
+        <div id="wsub-all">
+          <div class="card" style="margin-bottom:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+            <div id="wardrobe-cat-pills" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+              <select id="wardrobe-loc-filter" class="select" style="width:auto;height:36px;">
+                <option value="Tümü">Tüm Lokasyonlar</option>
+                <option value="Ev 1">Ev 1</option>
+                <option value="Ev 2">Ev 2</option>
+              </select>
+              <input id="wardrobe-search" class="input" style="width:190px;height:36px;" type="text" placeholder="Parça veya renk ara..." />
+            </div>
+          </div>
+          <div id="wardrobe-grid" class="grid-3"></div>
+        </div>
+
+        <div id="wsub-laundry" class="hidden">
+          <div class="card" style="margin-bottom:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+            <div>
+              <h3 class="serif" style="margin:0;font-size:20px;">Kirli Sepeti</h3>
+              <p class="page-subtitle">Buradaki parçalar yıkanana kadar kombin önerilerinde gösterilmez.</p>
+            </div>
+            <button id="btn-wash-all" class="btn btn-primary">🫧 Tümünü Yıka</button>
+          </div>
+          <div id="laundry-grid" class="grid-3"></div>
+        </div>
+
+        <div id="wsub-care" class="hidden">
+          <div id="care-alerts" style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;"></div>
+          <div class="card">
+            <h3 class="serif" style="margin:0 0 12px;font-size:20px;">Parça Bakım Rehberi</h3>
+            <div id="care-notes-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 4: PLANLAYICI & VALİZ                                        -->
+      <!-- ================================================================ -->
+      <section id="tab-planner" class="tab-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">Lojistik &amp; Takvim</p>
+            <h2 class="page-title">Planlayıcı &amp; Valiz</h2>
+          </div>
+          <button id="btn-autofill-week" class="btn btn-primary btn-sm">✦ Haftayı Otomatik Doldur</button>
+        </div>
+
+        <div class="segmented">
+          <button class="seg-btn active" data-psub="weekly">Haftalık Plan &amp; Sosyal Hafıza</button>
+          <button class="seg-btn" data-psub="suitcase">Valiz Sihirbazı</button>
+        </div>
+
+        <div id="psub-weekly">
+          <div id="weekly-grid" class="grid-7" style="margin-bottom:22px;"></div>
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <div>
+                <h3 class="serif" style="margin:0;font-size:20px;">Sosyal Hafıza Kayıtları</h3>
+                <p class="page-subtitle">Aynı ortama üst üste aynı kombinle gitmeni engeller.</p>
+              </div>
+              <span id="memory-count" class="badge badge-neutral tabular">0 Kayıt</span>
+            </div>
+            <div id="social-memory-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+
+        <div id="psub-suitcase" class="hidden">
+          <div class="card" style="margin-bottom:16px;">
+            <h3 class="serif" style="margin:0 0 4px;font-size:20px;">Kapsül Valiz Sihirbazı</h3>
+            <p class="page-subtitle" style="margin-bottom:16px;">En az parça ile birbiriyle tam uyumlu maksimum kombin sayısını hesaplar.</p>
+            <div class="filter-grid" style="align-items:end;">
+              <div>
+                <label class="field-label" for="trip-days">Seyahat Süresi</label>
+                <select id="trip-days" class="select">
+                  <option value="2">2 Gün</option>
+                  <option value="3" selected>3 Gün</option>
+                  <option value="4">4 Gün</option>
+                  <option value="5">5 Gün</option>
+                  <option value="6">6 Gün</option>
+                  <option value="7">7 Gün</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="trip-weather">Hava Durumu</label>
+                <select id="trip-weather" class="select">
+                  <option value="Güneşli">Güneşli / Sıcak</option>
+                  <option value="Serin / Rüzgarlı" selected>Serin / Rüzgarlı</option>
+                  <option value="Yağmurlu">Yağmurlu</option>
+                  <option value="Soğuk">Soğuk</option>
+                </select>
+              </div>
+              <div>
+                <button id="btn-gen-suitcase" class="btn btn-primary" style="width:100%;height:40px;">Kapsül Valiz Oluştur</button>
+              </div>
+            </div>
+          </div>
+          <div id="suitcase-result"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 5: TEMİN & ALIŞVERİŞ                                         -->
+      <!-- ================================================================ -->
+      <section id="tab-sourcing" class="tab-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">Akıllı Temin &amp; Alışveriş</p>
+            <h2 class="page-title">Temin &amp; Alışveriş</h2>
+          </div>
+          <button id="btn-open-add-wish" class="btn btn-primary">+ Listeye Parça Ekle</button>
+        </div>
+
+        <!-- Monthly Budget Tracker -->
+        <div class="card" style="margin-bottom:20px;">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+            <div>
+              <span class="field-label">Aylık Alışveriş Bütçesi</span>
+              <div style="display:flex;align-items:baseline;gap:10px;">
+                <span id="budget-spent" class="serif tabular" style="font-size:28px;font-weight:600;">₺0</span>
+                <span style="font-size:13px;color:var(--text-muted);" class="tabular">/ <span id="budget-limit">₺12.000</span> hedef</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span id="budget-remaining" class="badge badge-success tabular">Kalan: ₺12.000</span>
+              <button id="btn-edit-budget" class="btn btn-secondary btn-xs">Bütçeyi Düzenle</button>
+            </div>
+          </div>
+          <div class="bar-track" style="height:8px;">
+            <div id="budget-bar" class="bar-fill" style="width:0%;background:var(--accent);"></div>
+          </div>
+        </div>
+
+        <div class="page-header" style="margin-bottom:12px;">
+          <h3 class="serif" style="margin:0;font-size:22px;">Alınacaklar Listem</h3>
+          <span id="wish-count" class="badge badge-neutral tabular">0 Parça</span>
+        </div>
+        <div id="wishlist-grid" class="grid-3" style="margin-bottom:24px;"></div>
+
+        <div class="card">
+          <p class="eyebrow">Gardırop Boşluk Analizi</p>
+          <h3 class="serif" style="margin:0 0 4px;font-size:20px;">Eksik Parça Radarı Önerileri</h3>
+          <p class="page-subtitle" style="margin-bottom:16px;">Almadan önce Stüdyo'da gerçek dolabınla dene veya tek tıkla mağazalarda ara.</p>
+          <div id="sourcing-radar-grid" class="grid-3"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- TAB 6: ANALİZ                                                    -->
+      <!-- ================================================================ -->
+      <section id="tab-analytics" class="tab-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">Veri &amp; İçgörü</p>
+            <h2 class="page-title">Gardırop Analizi</h2>
+          </div>
+          <button id="btn-reset-data" class="btn btn-secondary btn-xs">Varsayılana Sıfırla</button>
+        </div>
+
+        <div id="analytics-kpis" class="grid-4" style="margin-bottom:20px;"></div>
+
+        <div class="card" style="margin-bottom:20px;">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;">
+            <div>
+              <p class="eyebrow">Dinamik Boşluk Tespiti</p>
+              <h3 class="serif" style="margin:0;font-size:22px;">Eksik Parça Radarı</h3>
+            </div>
+            <button class="btn btn-secondary btn-xs" data-nav="sourcing">Temin &amp; Alışveriş'e Git →</button>
+          </div>
+          <div id="analytics-radar-grid" class="grid-3"></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="serif" style="margin:0 0 4px;font-size:20px;">Giyim Başına Maliyet (CPW)</h3>
+            <p class="page-subtitle" style="margin-bottom:14px;">Parasını en çok çıkaran parçalar.</p>
+            <div id="cpw-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+
+          <div class="card">
+            <h3 class="serif" style="margin:0 0 4px;font-size:20px;">Dolapta Tozlananlar (45+ Gün)</h3>
+            <p class="page-subtitle" style="margin-bottom:14px;">Uzun süredir giyilmemiş parçaları tek tıkla kurtar.</p>
+            <div id="dusty-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== MOBILE BOTTOM DOCK ==================== -->
+  <nav class="mobile-dock">
+    <button class="dock-btn active" data-nav="studio">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+      <span>Stüdyo</span>
+    </button>
+    <button class="dock-btn" data-nav="discover">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2c2.5 3 6 6.2 6 11a6 6 0 1 1-12 0c0-2.8 1.5-5.3 3-7 0 2 1 3 2 3 0-3 1-5 1-7z"/></svg>
+      <span>Keşfet</span>
+    </button>
+    <button class="dock-btn" data-nav="wardrobe">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+      <span>Gardırop</span>
+    </button>
+    <button class="dock-btn" data-nav="planner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Planla</span>
+    </button>
+    <button class="dock-btn" data-nav="sourcing">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+      <span>Temin</span>
+    </button>
+    <button class="dock-btn" data-nav="analytics">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Analiz</span>
+    </button>
+  </nav>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 0. iPhone Home Screen & Custom Icon Preview Modal -->
+  <div id="modal-ios" class="modal-backdrop hidden">
+    <div class="modal-sheet" style="max-width:440px;">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">iOS Tam Ekran Deneyimi</p>
+          <h3 class="serif" style="margin:0;font-size:22px;">iPhone Ana Ekran İkonu</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="modal-ios">✕</button>
+      </div>
+
+      <div style="text-align:center;margin-bottom:18px;">
+        <img id="ios-modal-icon-preview" class="ios-icon-preview-lg" alt="ATELIER iOS Uygulama İkonu" />
+        <div style="font-size:13px;font-weight:600;">ATELIER</div>
+        <div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">180×180px • Adres Çubuksuz Tam Ekran • Çentik Uyumlu</div>
+      </div>
+
+      <div class="ios-step">
+        <span class="ios-step-num">1</span>
+        <div style="font-size:12.5px;">Bu sayfayı iPhone'da <strong>Safari</strong> tarayıcısında aç.</div>
+      </div>
+      <div class="ios-step">
+        <span class="ios-step-num">2</span>
+        <div style="font-size:12.5px;">Alt çubuktaki <strong>Paylaş</strong> simgesine (kare içinde yukarı ok) dokun.</div>
+      </div>
+      <div class="ios-step" style="margin-bottom:16px;">
+        <span class="ios-step-num">3</span>
+        <div style="font-size:12.5px;">Aşağı kaydırıp <strong>"Ana Ekrana Ekle"</strong> → <strong>Ekle</strong> de. İkon doğrudan ana ekranına yerleşecek.</div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" data-close-modal="modal-ios">Harika, Anladım</button>
+    </div>
+  </div>
+
+  <!-- 1. Emergency 10 Seconds Modal -->
+  <div id="modal-emergency" class="modal-backdrop hidden">
+    <div class="modal-sheet wide">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Acil Durum Modu</p>
+          <h3 class="serif" style="margin:0;font-size:24px;">⚡ 10 Saniyede Çık — 3 Garanti Kombin</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="modal-emergency">✕</button>
+      </div>
+      <p class="page-subtitle" style="margin-bottom:16px;">Kirli sepetinde olmayan, seçili hava durumuna uygun en yüksek puanlı 3 hazır kombin:</p>
+      <div id="emergency-list" class="grid-3"></div>
+    </div>
+  </div>
+
+  <!-- 2. Store Radar ("Temin Et") Modal -->
+  <div id="modal-sourcing" class="modal-backdrop hidden">
+    <div class="modal-sheet wide">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Tek Tıkla Mağaza Radarı</p>
+          <h3 id="sourcing-modal-title" class="serif" style="margin:0;font-size:24px;">Parçayı Temin Et</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="modal-sourcing">✕</button>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label class="field-label" for="sourcing-query-input">Arama Sorgusu (Düzenlenebilir)</label>
+        <div style="display:flex;gap:8px;">
+          <input id="sourcing-query-input" class="input" type="text" />
+          <button id="btn-copy-query" class="btn btn-secondary btn-sm">Kopyala</button>
+        </div>
+      </div>
+
+      <div class="nlp-coach-box" style="margin-bottom:16px;">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-text);margin-bottom:4px;">✦ Kumaş &amp; Kalıp İpucu</div>
+        <p id="sourcing-modal-tip" style="margin:0;font-size:12.5px;line-height:1.5;"></p>
+      </div>
+
+      <span class="field-label">Mağazalarda Anında Ara (Yeni Sekmede Açılır)</span>
+      <div id="sourcing-stores-grid" class="store-grid"></div>
+    </div>
+  </div>
+
+  <!-- 3. Add Wardrobe Item Modal -->
+  <div id="modal-add-item" class="modal-backdrop hidden">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Dijital Gardırop</p>
+          <h3 class="serif" style="margin:0;font-size:22px;">Yeni Parça Ekle</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="modal-add-item">✕</button>
+      </div>
+
+      <form id="form-add-item" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;gap:14px;padding:12px;border-radius:14px;border:1px dashed var(--border-strong);background:var(--bg-subtle);">
+          <div id="photo-preview" style="width:56px;height:56px;border-radius:12px;background:var(--bg-surface);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:20px;">📷</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:600;">Kıyafet Fotoğrafı (Opsiyonel)</div>
+            <div id="photo-hint" style="font-size:11.5px;color:var(--text-muted);margin:2px 0 6px;">Yüklediğinde baskın renk otomatik algılanır.</div>
+            <label class="btn btn-secondary btn-xs" style="cursor:pointer;">
+              Fotoğraf Seç
+              <input id="input-item-photo" type="file" accept="image/*" class="hidden" />
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label" for="add-name">Parça Adı</label>
+          <input id="add-name" class="input" type="text" required placeholder="Örn: Ekru Heavyweight Sweatshirt" />
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label class="field-label" for="add-cat">Kategori</label>
+            <select id="add-cat" class="select">
+              <option value="Üst">Üst</option>
+              <option value="Alt">Alt</option>
+              <option value="Dış Giyim">Dış Giyim</option>
+              <option value="Ayakkabı">Ayakkabı</option>
+              <option value="Aksesuar">Aksesuar</option>
+              <option value="Parfüm">Parfüm</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="add-fit">Kalıp (Fit)</label>
+            <select id="add-fit" class="select">
+              <option value="Oversize">Oversize</option>
+              <option value="Baggy">Baggy</option>
+              <option value="Boxy">Boxy</option>
+              <option value="Relaxed">Relaxed</option>
+              <option value="Regular">Regular</option>
+              <option value="Slim">Slim</option>
+              <option value="Chunky">Chunky</option>
+              <option value="Classic">Classic</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label class="field-label" for="add-color">Renk</label>
+            <div style="display:flex;gap:8px;">
+              <input id="add-hex" type="color" value="#141413" style="width:42px;height:40px;border:none;background:none;cursor:pointer;padding:0;" />
+              <input id="add-color" class="input" type="text" required value="Siyah" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="add-loc">Lokasyon</label>
+            <select id="add-loc" class="select">
+              <option value="Ev 1">Ev 1</option>
+              <option value="Ev 2">Ev 2</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label class="field-label" for="add-season">Mevsim</label>
+            <select id="add-season" class="select">
+              <option value="Dört Mevsim">Dört Mevsim</option>
+              <option value="Yaz">Yaz / Ilık</option>
+              <option value="Kış">Sonbahar / Kış</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="add-price">Fiyat (₺)</label>
+            <input id="add-price" class="input tabular" type="number" min="0" value="1800" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:4px;">Gardıroba Kaydet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Add Wishlist Item Modal -->
+  <div id="modal-add-wish" class="modal-backdrop hidden">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Alışveriş Listesi</p>
+          <h3 class="serif" style="margin:0;font-size:22px;">Listeye Parça Ekle</h3>
+        </div>
+        <button class="icon-btn" data-close-modal="modal-add-wish">✕</button>
+      </div>
+      <form id="form-add-wish" style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <label class="field-label" for="wish-name">Parça Adı</label>
+          <input id="wish-name" class="input" type="text" required placeholder="Örn: Krem Oversize Triko Kazak" />
+        </div>
+        <div class="grid-2">
+          <div>
+            <label class="field-label" for="wish-cat">Kategori</label>
+            <select id="wish-cat" class="select">
+              <option value="Üst">Üst</option>
+              <option value="Alt">Alt</option>
+              <option value="Dış Giyim">Dış Giyim</option>
+              <option value="Ayakkabı">Ayakkabı</option>
+              <option value="Aksesuar">Aksesuar</option>
+              <option value="Parfüm">Parfüm</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="wish-fit">Kalıp</label>
+            <select id="wish-fit" class="select">
+              <option value="Oversize">Oversize</option>
+              <option value="Boxy">Boxy</option>
+              <option value="Relaxed">Relaxed</option>
+              <option value="Baggy">Baggy</option>
+              <option value="Regular">Regular</option>
+              <option value="Chunky">Chunky</option>
+              <option value="Classic">Classic</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label class="field-label" for="wish-color">Renk</label>
+            <div style="display:flex;gap:8px;">
+              <input id="wish-hex" type="color" value="#EAE3D2" style="width:42px;height:40px;border:none;background:none;cursor:pointer;padding:0;" />
+              <input id="wish-color" class="input" type="text" required value="Krem" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="wish-price">Hedef Fiyat (₺)</label>
+            <input id="wish-price" class="input tabular" type="number" min="0" value="2400" />
+          </div>
+        </div>
+        <div>
+          <label class="field-label" for="wish-tip">Kumaş / Stil Notu</label>
+          <input id="wish-tip" class="input" type="text" placeholder="Örn: %100 pamuk, ağır gramajlı dokuma" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:4px;">Listeye Ekle</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Edit Budget Modal -->
+  <div id="modal-budget" class="modal-backdrop hidden">
+    <div class="modal-sheet" style="max-width:380px;">
+      <div class="modal-head">
+        <h3 class="serif" style="margin:0;font-size:20px;">Aylık Bütçeyi Düzenle</h3>
+        <button class="icon-btn" data-close-modal="modal-budget">✕</button>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label class="field-label" for="input-budget">Hedef Bütçe (₺)</label>
+        <input id="input-budget" class="input tabular" type="number" min="500" step="500" />
+      </div>
+      <button id="btn-save-budget" class="btn btn-primary" style="width:100%;">Kaydet</button>
+    </div>
+  </div>
+
+  <!-- 6. Worn Today Modal -->
+  <div id="modal-worn" class="modal-backdrop hidden">
+    <div class="modal-sheet" style="max-width:440px;">
+      <div class="modal-head">
+        <h3 class="serif" style="margin:0;font-size:22px;">Bugün Bunu Giydim</h3>
+        <button class="icon-btn" data-close-modal="modal-worn">✕</button>
+      </div>
+      <div id="worn-repeat-warn" class="hidden" style="padding:11px 14px;border-radius:12px;background:var(--warning-soft);color:var(--warning);font-size:12px;margin-bottom:14px;"></div>
+      <div style="margin-bottom:14px;">
+        <label class="field-label" for="worn-occasion">Sosyal Hafıza Etiketi</label>
+        <select id="worn-occasion" class="select"></select>
+      </div>
+      <div style="margin-bottom:16px;">
+        <span class="field-label">Kirli Sepetine Atılacak Parçalar</span>
+        <div id="worn-checklist" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+      <button id="btn-confirm-worn" class="btn btn-success" style="width:100%;">Kaydet &amp; Güncelle</button>
+    </div>
+  </div>
+
+  <!-- Toast & Hidden Canvas -->
+  <div id="toast" class="toast"></div>
+  <canvas id="color-canvas" class="hidden"></canvas>
+
+  <!-- ==================== ROCK-SOLID VANILLA JAVASCRIPT ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      /* ------------------------------------------------------------------
+         1. SAFE STORAGE WRAPPER (Never throws in sandboxed iframes or iOS Private Mode)
+         ------------------------------------------------------------------ */
+      const memoryStore = {};
+      const safeStorage = {
+        get(key) {
+          try {
+            const v = window.localStorage.getItem(key);
+            return v !== null ? v : (memoryStore[key] || null);
+          } catch (e) {
+            return memoryStore[key] || null;
+          }
+        },
+        set(key, val) {
+          memoryStore[key] = val;
+          try { window.localStorage.setItem(key, val); } catch (e) { /* memory fallback */ }
+        },
+        remove(key) {
+          delete memoryStore[key];
+          try { window.localStorage.removeItem(key); } catch (e) { /* ignore */ }
+        }
+      };
+
+      const STORAGE_KEY = 'atelier_os_v4_ios';
+
+      /* ------------------------------------------------------------------
+         2. CONSTANTS & CURATED TURKISH WARDROBE DATA (22 ITEMS)
+         ------------------------------------------------------------------ */
+      const OCCASIONS = ['Günlük / Okul', 'Kahve', 'Date', 'Akşam Çıkışı', 'Spor / Rahat'];
+      const WEATHERS = [
+        { id: 'Güneşli', label: 'Güneşli', temp: '23°C', icon: '☀️', outer: false },
+        { id: 'Serin / Rüzgarlı', label: 'Serin / Rüzgarlı', temp: '15°C', icon: '🌬️', outer: true },
+        { id: 'Yağmurlu', label: 'Yağmurlu', temp: '12°C', icon: '🌧️', outer: true },
+        { id: 'Soğuk', label: 'Soğuk', temp: '6°C', icon: '❄️', outer: true }
+      ];
+      const CATEGORIES = ['Tümü', 'Üst', 'Alt', 'Dış Giyim', 'Ayakkabı', 'Aksesuar', 'Parfüm'];
+      const DAYS = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+
+      const STORES = [
+        { name: 'Zara', tag: 'Modern Minimal', url: q => `https://www.zara.com/tr/tr/search?searchTerm=${encodeURIComponent(q)}` },
+        { name: 'Pull&Bear', tag: 'Streetwear', url: q => `https://www.pullandbear.com/tr/search?q=${encodeURIComponent(q)}` },
+        { name: 'Bershka', tag: 'Boxy & Trend', url: q => `https://www.bershka.com/tr/search?q=${encodeURIComponent(q)}` },
+        { name: 'Massimo Dutti', tag: 'Old Money', url: q => `https://www.massimodutti.com/tr/search?q=${encodeURIComponent(q)}` },
+        { name: 'H&M', tag: 'Basic & Kalıp', url: q => `https://www2.hm.com/tr_tr/search-results.html?q=${encodeURIComponent(q)}` },
+        { name: 'Trendyol', tag: 'Geniş Seçki', url: q => `https://www.trendyol.com/sr?q=${encodeURIComponent(q)}` },
+        { name: 'Boyner', tag: 'Çoklu Marka', url: q => `https://www.boyner.com.tr/search?q=${encodeURIComponent(q)}` },
+        { name: 'Beymen', tag: 'Lüks Seçki', url: q => `https://www.beymen.com/tr/search?q=${encodeURIComponent(q)}` }
+      ];
+
+      const DEFAULT_WARDROBE = [
+        // Üst (5)
+        { id: 'u1', name: 'Siyah Drop-Shoulder Oversize Tişört', category: 'Üst', fit: 'Oversize', color: 'Siyah', hex: '#18181B', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Spor / Rahat'], location: 'Ev 1', price: 950, wearCount: 19, lastWornDays: 2, dirty: false, care: '30°C ters çevirerek yıka.' },
+        { id: 'u2', name: 'Krem Boxy Heavyweight Tişört', category: 'Üst', fit: 'Boxy', color: 'Krem', hex: '#F2ECE1', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Date'], location: 'Ev 2', price: 1150, wearCount: 14, lastWornDays: 4, dirty: false, care: 'Açık renklilerle 30°C yıka.' },
+        { id: 'u3', name: 'Antrasit Oversize Hoodie', category: 'Üst', fit: 'Oversize', color: 'Antrasit', hex: '#3B3B40', season: 'Kış', occasions: ['Günlük / Okul', 'Kahve', 'Spor / Rahat'], location: 'Ev 1', price: 2450, wearCount: 15, lastWornDays: 3, dirty: true, care: 'Sererek kurut.' },
+        { id: 'u4', name: 'Beyaz Oxford Keten Gömlek', category: 'Üst', fit: 'Regular', color: 'Beyaz', hex: '#FAFAFA', season: 'Dört Mevsim', occasions: ['Date', 'Kahve', 'Akşam Çıkışı'], location: 'Ev 2', price: 1950, wearCount: 4, lastWornDays: 52, dirty: false, care: 'Nemliyken buharlı ütü.' },
+        { id: 'u5', name: 'Lacivert İnce Triko Kazak', category: 'Üst', fit: 'Regular', color: 'Lacivert', hex: '#1E293B', season: 'Kış', occasions: ['Date', 'Kahve', 'Akşam Çıkışı'], location: 'Ev 1', price: 2200, wearCount: 9, lastWornDays: 10, dirty: false, care: 'Yün programında soğuk yıka.' },
+
+        // Alt (5)
+        { id: 'a1', name: 'Siyah Baggy Fit Jean', category: 'Alt', fit: 'Baggy', color: 'Siyah', hex: '#1C1C1E', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Date', 'Akşam Çıkışı'], location: 'Ev 1', price: 2300, wearCount: 24, lastWornDays: 1, dirty: false, care: '5 giymede bir soğuk suda yıka.' },
+        { id: 'a2', name: 'Antrasit Relaxed Eşofman Altı', category: 'Alt', fit: 'Oversize', color: 'Antrasit', hex: '#434348', season: 'Dört Mevsim', occasions: ['Spor / Rahat', 'Günlük / Okul', 'Kahve'], location: 'Ev 1', price: 1550, wearCount: 16, lastWornDays: 4, dirty: false, care: '30°C hassas program.' },
+        { id: 'a3', name: 'Açık Mavi Baggy Denim', category: 'Alt', fit: 'Baggy', color: 'Açık Mavi', hex: '#88A6C2', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve'], location: 'Ev 1', price: 2400, wearCount: 10, lastWornDays: 8, dirty: false, care: 'Ters çevirerek 30°C yıka.' },
+        { id: 'a4', name: 'Bej Pileli Kumaş Pantolon', category: 'Alt', fit: 'Relaxed', color: 'Bej', hex: '#D8CBB6', season: 'Dört Mevsim', occasions: ['Date', 'Kahve', 'Akşam Çıkışı'], location: 'Ev 2', price: 2750, wearCount: 5, lastWornDays: 49, dirty: false, care: 'Kuru temizleme veya düşük ısı.' },
+        { id: 'a5', name: 'Haki Yeşil Kargo Pantolon', category: 'Alt', fit: 'Relaxed', color: 'Haki', hex: '#4B5742', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Spor / Rahat'], location: 'Ev 2', price: 2100, wearCount: 3, lastWornDays: 58, dirty: false, care: '30°C koyu renklilerle.' },
+
+        // Dış Giyim (3)
+        { id: 'd1', name: 'Siyah Deri Bomber Ceket', category: 'Dış Giyim', fit: 'Boxy', color: 'Siyah', hex: '#141416', season: 'Kış', occasions: ['Date', 'Kahve', 'Akşam Çıkışı', 'Günlük / Okul'], location: 'Ev 1', price: 6800, wearCount: 12, lastWornDays: 5, dirty: false, care: 'Nemli bezle sil, deri kremi.' },
+        { id: 'd2', name: 'Taş Beji Minimal Trençkot', category: 'Dış Giyim', fit: 'Regular', color: 'Taş Beji', hex: '#CFC3B0', season: 'Kış', occasions: ['Date', 'Kahve', 'Akşam Çıkışı'], location: 'Ev 2', price: 5600, wearCount: 3, lastWornDays: 54, dirty: false, care: 'Sadece kuru temizleme.' },
+        { id: 'd3', name: 'Gri Yün Oversize Kaban', category: 'Dış Giyim', fit: 'Oversize', color: 'Gri', hex: '#6E7075', season: 'Kış', occasions: ['Date', 'Akşam Çıkışı', 'Günlük / Okul'], location: 'Ev 1', price: 7500, wearCount: 8, lastWornDays: 11, dirty: false, care: 'Tüy rulosu ile temizle.' },
+
+        // Ayakkabı (3)
+        { id: 's1', name: 'Beyaz Deri Minimalist Sneaker', category: 'Ayakkabı', fit: 'Chunky', color: 'Beyaz', hex: '#F4F4F2', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Date', 'Spor / Rahat'], location: 'Ev 1', price: 4900, wearCount: 25, lastWornDays: 1, dirty: false, cleanedAtWear: 18, care: '5 giymede bir köpük temizleyici.' },
+        { id: 's2', name: 'Siyah Süet Günlük Sneaker', category: 'Ayakkabı', fit: 'Regular', color: 'Siyah', hex: '#202024', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Spor / Rahat'], location: 'Ev 1', price: 4300, wearCount: 15, lastWornDays: 3, dirty: false, care: 'Süet fırçası ile kuru temizle.' },
+        { id: 's3', name: 'Kahverengi Süet Loafer', category: 'Ayakkabı', fit: 'Classic', color: 'Kahverengi', hex: '#6F4E37', season: 'Dört Mevsim', occasions: ['Date', 'Akşam Çıkışı', 'Kahve'], location: 'Ev 2', price: 5400, wearCount: 6, lastWornDays: 16, dirty: false, care: 'Süet koruyucu sprey.' },
+
+        // Aksesuar (3)
+        { id: 'k1', name: 'Gümüş Çelik Minimal Saat', category: 'Aksesuar', fit: 'Classic', color: 'Gümüş', hex: '#C4C7CE', metal: 'Gümüş', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Date', 'Kahve', 'Akşam Çıkışı'], location: 'Ev 1', price: 7200, wearCount: 31, lastWornDays: 1, dirty: false, care: 'Mikrofiber bezle sil.' },
+        { id: 'k2', name: 'Gümüş İnce Zincir Kolye', category: 'Aksesuar', fit: 'Classic', color: 'Gümüş', hex: '#D4D6DC', metal: 'Gümüş', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Date', 'Akşam Çıkışı'], location: 'Ev 1', price: 1250, wearCount: 20, lastWornDays: 2, dirty: false, care: 'Parfümden önce çıkar.' },
+        { id: 'k3', name: 'Siyah Mat Güneş Gözlüğü', category: 'Aksesuar', fit: 'Classic', color: 'Siyah', hex: '#18181B', metal: 'Siyah', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Kahve', 'Date'], location: 'Ev 2', price: 3400, wearCount: 14, lastWornDays: 7, dirty: false, care: 'Sert kutusunda sakla.' },
+
+        // Parfüm (3)
+        { id: 'p1', name: 'Gece Odunsu & Amber EDP', category: 'Parfüm', fit: 'Classic', color: 'Amber', hex: '#8B5A2B', frag: 'Odunsu / Amber', season: 'Kış', occasions: ['Date', 'Akşam Çıkışı'], location: 'Ev 1', price: 5100, wearCount: 16, lastWornDays: 4, dirty: false, care: 'Serin yerde sakla.' },
+        { id: 'p2', name: 'Ferah Narenciye & Deniz EDT', category: 'Parfüm', fit: 'Classic', color: 'Buz Mavisi', hex: '#86C5DA', frag: 'Ferah / Narenciye', season: 'Dört Mevsim', occasions: ['Günlük / Okul', 'Spor / Rahat', 'Kahve'], location: 'Ev 1', price: 3800, wearCount: 24, lastWornDays: 1, dirty: false, care: 'Nabız noktalarına 2-3 fıs.' },
+        { id: 'p3', name: 'Temiz Misk & Sedir EDP', category: 'Parfüm', fit: 'Classic', color: 'İnci', hex: '#E6E4DF', frag: 'Temiz Misk / Sedir', season: 'Dört Mevsim', occasions: ['Kahve', 'Date', 'Akşam Çıkışı', 'Günlük / Okul'], location: 'Ev 2', price: 4400, wearCount: 11, lastWornDays: 6, dirty: false, care: 'Temiz cilde uygula.' }
+      ];
+
+      const DEFAULT_WISHLIST = [
+        { id: 'w1', name: 'Ekru Oversize Triko Kazak', category: 'Üst', fit: 'Oversize', color: 'Ekru', hex: '#EBE4D4', price: 2400, tip: 'Düşük omuz, en az 320 gsm pamuk veya ince yün karışımlı doku seç.' },
+        { id: 'w2', name: 'Siyah Deri Chelsea Bot', category: 'Ayakkabı', fit: 'Classic', color: 'Siyah', hex: '#161618', price: 5800, tip: 'Yağmurlu ve serin akşamlarda baggy ve kumaş pantolonlarla kusursuz durur.' }
+      ];
+
+      const DEFAULT_MEMORY = [
+        { id: 'm1', date: '18 Kasım', occasion: 'Date', score: 9.4, items: ['u2', 'a1', 'd1', 's1', 'k1', 'p1'] },
+        { id: 'm2', date: '19 Kasım', occasion: 'Günlük / Okul', score: 9.1, items: ['u1', 'a3', 's1', 'k2', 'p2'] }
+      ];
+
+      /* ------------------------------------------------------------------
+         3. APPLICATION STATE
+         ------------------------------------------------------------------ */
+      let state = {
+        theme: 'light',
+        activeTab: 'studio',
+        iosTipDismissed: false,
+        wardrobeSub: 'all',
+        wardrobeCat: 'Tümü',
+        plannerSub: 'weekly',
+        wardrobe: [],
+        wishlist: [],
+        budget: 12000,
+        budgetSpent: 0,
+        studio: {
+          occasion: 'Günlük / Okul',
+          weather: 'Serin / Rüzgarlı',
+          palette: 'Dengeli',
+          location: 'Tümü',
+          heroId: '',
+          fitPref: '',
+          nlPrompt: '',
+          nlIntents: null,
+          nlNote: '',
+          locks: {},
+          outfit: {},
+          virtualItem: null
+        },
+        favorites: [],
+        weeklyPlan: {},
+        socialMemory: [],
+        tinderCard: null,
+        suitcase: null
+      };
+
+      let uploadedPhoto = null;
+      let activeSourcingItem = null;
+      let emergencyOptions = [];
+      let toastTimer = null;
+
+      function clone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+      function loadState() {
+        const raw = safeStorage.get(STORAGE_KEY);
+        if (raw) {
+          try {
+            const parsed = JSON.parse(raw);
+            state = Object.assign({}, state, parsed);
+            state.studio = Object.assign({}, state.studio, parsed.studio || {});
+          } catch (e) {
+            seedDefaults();
+          }
+        } else {
+          seedDefaults();
+        }
+        if (!Array.isArray(state.wardrobe) || !state.wardrobe.length) state.wardrobe = clone(DEFAULT_WARDROBE);
+        if (!Array.isArray(state.wishlist)) state.wishlist = clone(DEFAULT_WISHLIST);
+        if (!Array.isArray(state.socialMemory)) state.socialMemory = clone(DEFAULT_MEMORY);
+        applyTheme();
+        initIosIconPreviews();
+      }
+
+      function seedDefaults() {
+        state.wardrobe = clone(DEFAULT_WARDROBE);
+        state.wishlist = clone(DEFAULT_WISHLIST);
+        state.socialMemory = clone(DEFAULT_MEMORY);
+        state.budget = 12000;
+        state.budgetSpent = 0;
+        state.favorites = [];
+        state.weeklyPlan = {};
+      }
+
+      function saveState() {
+        safeStorage.set(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      /* ------------------------------------------------------------------
+         4. iOS ICON PREVIEW, THEME & UI HELPERS
+         ------------------------------------------------------------------ */
+      function initIosIconPreviews() {
+        const iconUrl = window.__ATELIER_ICON_PNG__ || '';
+        const thumb = document.getElementById('ios-banner-thumb');
+        const lgPrev = document.getElementById('ios-modal-icon-preview');
+        if (thumb && iconUrl) thumb.src = iconUrl;
+        if (lgPrev && iconUrl) lgPrev.src = iconUrl;
+
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        const banner = document.getElementById('ios-tip-banner');
+        if (banner && (state.iosTipDismissed || isStandalone)) {
+          banner.classList.add('hidden');
+        }
+      }
+
+      function showToast(msg) {
+        const el = document.getElementById('toast');
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+      }
+
+      function openModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('hidden');
+      }
+
+      function closeModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      }
+
+      function applyTheme() {
+        const dark = state.theme === 'dark';
+        document.documentElement.classList.toggle('dark', dark);
+        const metaTheme = document.getElementById('theme-color-meta');
+        if (metaTheme) metaTheme.setAttribute('content', dark ? '#0B0B0C' : '#F7F6F3');
+
+        const lbl = document.getElementById('theme-label');
+        const ic = document.getElementById('theme-icon');
+        const mob = document.getElementById('btn-theme-mob');
+        if (lbl) lbl.textContent = dark ? 'Alabaster Açık Tema' : 'Obsidian Koyu Tema';
+        if (ic) ic.textContent = dark ? '☀' : '☾';
+        if (mob) mob.textContent = dark ? '☀' : '☾';
+      }
+
+      function toggleTheme() {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme();
+        saveState();
+      }
+
+      function getItemById(id) {
+        if (!id) return null;
+        if (state.studio.virtualItem && state.studio.virtualItem.id === id) return state.studio.virtualItem;
+        return state.wardrobe.find(i => i.id === id) || null;
+      }
+
+      function needsSneakerCleaning(item) {
+        if (!item || item.category !== 'Ayakkabı') return false;
+        const isWhite = (item.color || '').toLocaleLowerCase('tr-TR').includes('beyaz');
+        if (!isWhite) return false;
+        const sinceClean = (item.wearCount || 0) - (item.cleanedAtWear || 0);
+        return sinceClean >= 5;
+      }
+
+      function classifyColor(colorName) {
+        const c = (colorName || '').toLocaleLowerCase('tr-TR');
+        if (c.includes('siyah')) return 'black';
+        if (c.includes('beyaz') || c.includes('inci')) return 'white';
+        if (c.includes('gri') || c.includes('antrasit') || c.includes('gümüş')) return 'gray';
+        if (c.includes('krem') || c.includes('ekru') || c.includes('bej') || c.includes('taş') || c.includes('kahve') || c.includes('haki') || c.includes('amber')) return 'earth';
+        if (c.includes('lacivert') || c.includes('mavi')) return 'blue';
+        return 'other';
+      }
+
+      function matchesPalette(item, palette) {
+        if (!palette || palette === 'Dengeli' || palette === 'Tümü') return true;
+        const g = classifyColor(item.color);
+        if (palette === 'All-Black') return g === 'black' || g === 'gray';
+        if (palette === 'Toprak Tonları') return g === 'earth' || g === 'white' || g === 'black';
+        if (palette === 'Yüksek Kontrast') return g === 'black' || g === 'white';
+        if (palette === 'Old Money') return g === 'earth' || g === 'white' || g === 'blue' || g === 'black';
+        return true;
+      }
+
+      function getCategorySvg(cat) {
+        switch (cat) {
+          case 'Üst': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>';
+          case 'Alt': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12l1 18h-5l-2-10-2 10H5L6 3z"/></svg>';
+          case 'Dış Giyim': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3l4 3-2 15H6L4 6l4-3 4 4 4-4z"/><line x1="12" y1="7" x2="12" y2="21"/></svg>';
+          case 'Ayakkabı': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 16l2-7 4 3 4-1 5 3a2 2 0 0 1 1 1.7V18H3v-2z"/></svg>';
+          case 'Aksesuar': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 2v5M12 17v5"/></svg>';
+          case 'Parfüm': return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="8" width="10" height="13" rx="2"/><path d="M10 8V5h4v3M9 3h6"/></svg>';
+          default: return '✦';
+        }
+      }
+
+      function isLightHex(hex) {
+        const h = (hex || '#888888').replace('#', '');
+        if (h.length !== 6) return false;
+        const r = parseInt(h.slice(0, 2), 16);
+        const g = parseInt(h.slice(2, 4), 16);
+        const b = parseInt(h.slice(4, 6), 16);
+        return (0.299 * r + 0.587 * g + 0.114 * b) > 168;
+      }
+
+      function renderSwatchVisual(item) {
+        if (item.image) {
+          return `<div class="garment-visual"><img src="${item.image}" alt="${item.name}" /></div>`;
+        }
+        const fg = isLightHex(item.hex) ? '#141413' : '#FFFFFF';
+        return `
+          <div class="garment-visual">
+            <div class="garment-swatch-circle" style="background:${item.hex || '#333'};color:${fg};">
+              ${getCategorySvg(item.category)}
+            </div>
+          </div>
+        `;
+      }
+
+      /* ------------------------------------------------------------------
+         5. OUTFIT ENGINE & LIVE STYLE COACH
+         ------------------------------------------------------------------ */
+      function getCleanPool(category, location) {
+        return state.wardrobe.filter(i => {
+          if (i.dirty) return false;
+          if (i.category !== category) return false;
+          if (location && location !== 'Tümü' && i.location !== location) return false;
+          return true;
+        });
+      }
+
+      function pickSlotItem(category, opts, excludeId) {
+        let pool = getCleanPool(category, opts.location);
+        if (!pool.length) pool = getCleanPool(category, 'Tümü');
+        if (!pool.length) return null;
+        if (excludeId && pool.length > 1) pool = pool.filter(i => i.id !== excludeId);
+
+        const scored = pool.map(item => {
+          let w = 10 + Math.random() * 6;
+          if (item.occasions && item.occasions.includes(opts.occasion)) w += 15;
+          if (matchesPalette(item, opts.palette)) w += 16;
+          if (opts.weather === 'Soğuk' && item.season === 'Kış') w += 9;
+          if (opts.weather === 'Güneşli' && item.season !== 'Kış') w += 8;
+          if (opts.fitPref === 'Rahat' && ['Oversize', 'Baggy', 'Relaxed', 'Boxy'].includes(item.fit)) w += 13;
+          if (opts.fitPref === 'Özenli' && ['Regular', 'Slim', 'Classic'].includes(item.fit)) w += 13;
+          if (opts.fitPref === 'Rahat & Özenli' && ['Relaxed', 'Boxy', 'Regular', 'Classic'].includes(item.fit)) w += 11;
+          return { item, w };
+        }).sort((a, b) => b.w - a.w);
+
+        const top = scored.slice(0, Math.min(2, scored.length));
+        return top[Math.floor(Math.random() * top.length)].item;
+      }
+
+      function buildOutfit(opts) {
+        const wObj = WEATHERS.find(w => w.id === opts.weather) || WEATHERS[1];
+        const slots = ['Üst', 'Alt', 'Ayakkabı', 'Aksesuar', 'Parfüm'];
+        if (wObj.outer) slots.splice(2, 0, 'Dış Giyim');
+
+        const hero = opts.virtualItem || (opts.heroId ? state.wardrobe.find(i => i.id === opts.heroId && !i.dirty) : null);
+        if (hero && hero.category === 'Dış Giyim' && !slots.includes('Dış Giyim')) {
+          slots.splice(2, 0, 'Dış Giyim');
+        }
+
+        const out = {};
+        slots.forEach(cat => {
+          if (hero && hero.category === cat) {
+            out[cat] = hero.id;
+          } else if (opts.locks && opts.locks[cat] && opts.existing && opts.existing[cat]) {
+            const lockedItem = getItemById(opts.existing[cat]);
+            if (lockedItem && !lockedItem.dirty) {
+              out[cat] = lockedItem.id;
+            } else {
+              const p = pickSlotItem(cat, opts, null);
+              if (p) out[cat] = p.id;
+            }
+          } else {
+            const p = pickSlotItem(cat, opts, null);
+            if (p) out[cat] = p.id;
+          }
+        });
+        return out;
+      }
+
+      function evaluateOutfit(outfit, occasion, weather) {
+        const items = Object.values(outfit).map(getItemById).filter(Boolean);
+        const top = getItemById(outfit['Üst']);
+        const bot = getItemById(outfit['Alt']);
+        const out = getItemById(outfit['Dış Giyim']);
+        const sho = getItemById(outfit['Ayakkabı']);
+        const acc = getItemById(outfit['Aksesuar']);
+        const frg = getItemById(outfit['Parfüm']);
+
+        // 1. Renk Uyumu
+        const groups = new Set(items.filter(i => i.category !== 'Parfüm').map(i => classifyColor(i.color)));
+        let colorScore = 9.4;
+        let colorComment = 'Nötr ve dengeli renk geçişi; göz yormayan lüks bir palet.';
+        if (groups.size === 1) {
+          colorScore = 9.6;
+          colorComment = 'Monokrom ton bütünlüğü çok keskin ve editoryal duruyor.';
+        } else if (groups.size >= 4) {
+          colorScore = 7.9;
+          colorComment = 'Palet biraz dağılmış; bir parçayı siyah, krem veya griye çekersen bütünlük artar.';
+        } else if (groups.has('earth') && (groups.has('black') || groups.has('white'))) {
+          colorScore = 9.5;
+          colorComment = 'Toprak tonları ile temel nötrlerin birleşimi zamansız bir kontrast kuruyor.';
+        }
+
+        // 2. Kalıp & Silüet Dengesi
+        let fitScore = 9.0;
+        let fitComment = 'Üst ve alt oranları dengeli, temiz bir günlük silüet.';
+        if (bot && bot.fit === 'Baggy' && sho && sho.fit === 'Chunky') {
+          fitScore = 9.7;
+          fitComment = 'Baggy paça dökümü chunky tabanlı ayakkabıyla tam oturuyor.';
+        } else if (bot && bot.fit === 'Baggy' && sho && sho.fit === 'Classic') {
+          fitScore = 8.1;
+          fitComment = 'Baggy pantolon altında klasik ince taban biraz zayıf kalabilir; chunky sneaker ile dene.';
+        } else if (top && top.fit === 'Boxy' && bot && ['Baggy', 'Relaxed'].includes(bot.fit)) {
+          fitScore = 9.5;
+          fitComment = 'Boxy üst + geniş kesim alt bacak boyunu optik olarak uzatıyor.';
+        } else if (top && top.fit === 'Oversize' && out && out.fit === 'Slim') {
+          fitScore = 7.6;
+          fitComment = 'Oversize üstün üstüne dar dış giyim omuzlarda potluk yapabilir.';
+        }
+
+        // 3. Metal & Aksesuar Uyumu
+        let metalScore = 9.1;
+        let metalComment = acc
+          ? `${acc.metal || 'Minimal'} detaylı ${acc.name} kombine rafine bir son dokunuş veriyor.`
+          : 'Saat veya ince bir kolye eklersen silüet daha tamamlanmış görünür.';
+        if (acc && acc.metal === 'Gümüş' && (groups.has('black') || groups.has('gray') || groups.has('blue'))) {
+          metalScore = 9.6;
+          metalComment = 'Soğuk tonlu kıyafetlerle gümüş metal uyumu kusursuz çalışıyor.';
+        }
+
+        // 4. Parfüm Eşleşmesi
+        let fragScore = 9.0;
+        let fragComment = frg ? `${frg.name} seçilen ortamla uyumlu.` : 'Koku seçilmedi.';
+        if (frg) {
+          const isNight = occasion === 'Date' || occasion === 'Akşam Çıkışı' || weather === 'Soğuk' || weather === 'Serin / Rüzgarlı';
+          if (isNight && frg.frag && (frg.frag.includes('Odunsu') || frg.frag.includes('Misk'))) {
+            fragScore = 9.7;
+            fragComment = `${frg.name}, ${weather.toLowerCase()} hava ve ${occasion} atmosferi için nokta atışı.`;
+          } else if (!isNight && frg.frag && frg.frag.includes('Ferah')) {
+            fragScore = 9.6;
+            fragComment = `${frg.name} gün içi dinamizmine taze ve temiz bir imza katıyor.`;
+          } else if (weather === 'Güneşli' && frg.frag && frg.frag.includes('Odunsu')) {
+            fragScore = 8.2;
+            fragComment = 'Sıcak havada ağır odunsu notalar yerine ferah narenciye veya temiz misk daha rahat taşınır.';
+          }
+        }
+
+        const total = Number(((colorScore + fitScore + metalScore + fragScore) / 4).toFixed(1));
+        const verdict = total >= 9.2 ? 'Kusursuz' : total >= 8.5 ? 'Çok İyi' : 'Geliştirilebilir';
+        const summary = total >= 9.2
+          ? 'Renk, kalıp ve detay uyumu tam bir Apple editoryal minimalizm dengesinde.'
+          : total >= 8.5
+          ? 'Güçlü ve güvenli bir kombin; ufak bir ayakkabı veya koku dokunuşuyla zirveye çıkar.'
+          : 'Kalıp veya renk geçişinde küçük bir revizyonla çok daha keskin görünebilir.';
+
+        return {
+          total,
+          verdict,
+          summary,
+          metrics: [
+            { label: 'Renk Uyumu', score: colorScore, comment: colorComment },
+            { label: 'Kalıp & Silüet Dengesi', score: fitScore, comment: fitComment },
+            { label: 'Metal / Aksesuar Uyumu', score: metalScore, comment: metalComment },
+            { label: 'Parfüm Eşleşmesi', score: fragScore, comment: fragComment }
+          ]
+        };
+      }
+
+      /* ------------------------------------------------------------------
+         6. TURKISH NATURAL LANGUAGE PARSER (SPOTLIGHT BAR)
+         ------------------------------------------------------------------ */
+      function normalizeTr(str) {
+        return (str || '').toLocaleLowerCase('tr-TR').replace(/[.,!?;:'"()]/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+
+      function hasAny(text, words) {
+        return words.some(w => text.includes(w));
+      }
+
+      function parseTurkishCommand(rawText) {
+        const text = normalizeTr(rawText);
+        const intents = {};
+
+        // Occasion
+        if (hasAny(text, ['date', 'randevu', 'romantik', 'buluşma'])) intents.occasion = 'Date';
+        else if (hasAny(text, ['kahve', 'kafe', 'brunch', 'arkadaş'])) intents.occasion = 'Kahve';
+        else if (hasAny(text, ['spor', 'gym', 'yürüyüş', 'koşu'])) intents.occasion = 'Spor / Rahat';
+        else if (hasAny(text, ['akşam çıkışı', 'gece çıkışı', 'bar', 'kulüp', 'akşam yemeği', 'ofis', 'toplantı'])) intents.occasion = 'Akşam Çıkışı';
+        else if (hasAny(text, ['okul', 'kampüs', 'ders', 'üniversite', 'günlük'])) intents.occasion = 'Günlük / Okul';
+
+        // Weather
+        if (hasAny(text, ['yağmur', 'ıslak', 'sağanak'])) intents.weather = 'Yağmurlu';
+        else if (hasAny(text, ['soğuk', 'kış', 'ayaz', 'kar'])) intents.weather = 'Soğuk';
+        else if (hasAny(text, ['güneş', 'sıcak', 'yaz'])) intents.weather = 'Güneşli';
+        else if (hasAny(text, ['rüzgar', 'esinti', 'serin', 'bulut', 'akşam', 'gece'])) intents.weather = 'Serin / Rüzgarlı';
+
+        // Palette
+        if (hasAny(text, ['all-black', 'all black', 'monokrom', 'koyu ton', 'simsiyah', 'siyah kombin'])) intents.palette = 'All-Black';
+        else if (hasAny(text, ['toprak', 'bej', 'krem ton', 'kahve ton', 'haki'])) intents.palette = 'Toprak Tonları';
+        else if (hasAny(text, ['kontrast', 'siyah beyaz'])) intents.palette = 'Yüksek Kontrast';
+        else if (hasAny(text, ['old money', 'minimal', 'klasik', 'özenli', 'şık'])) intents.palette = 'Old Money';
+
+        // Fit preference
+        const wantsRelaxed = hasAny(text, ['rahat', 'oversize', 'baggy', 'bol', 'salaş']);
+        const wantsSharp = hasAny(text, ['özenli', 'şık', 'slim', 'keskin', 'toparlayıcı']);
+        if (wantsRelaxed && wantsSharp) intents.fitPref = 'Rahat & Özenli';
+        else if (wantsRelaxed) intents.fitPref = 'Rahat';
+        else if (wantsSharp) intents.fitPref = 'Özenli';
+
+        // Location
+        if (hasAny(text, ['ev 2', 'ev2', 'ikinci ev'])) intents.location = 'Ev 2';
+        else if (hasAny(text, ['ev 1', 'ev1', 'birinci ev'])) intents.location = 'Ev 1';
+
+        // Hero piece detection from clean wardrobe
+        const garmentWords = ['sneaker', 'loafer', 'bot', 'ceket', 'deri', 'trençkot', 'kaban', 'gömlek', 'oxford', 'hoodie', 'kazak', 'triko', 'tişört', 'pantolon', 'jean', 'denim', 'eşofman', 'baggy', 'kargo', 'saat', 'gözlük', 'kolye'];
+        const colorWords = ['beyaz', 'siyah', 'krem', 'bej', 'antrasit', 'gri', 'lacivert', 'mavi', 'haki', 'kahverengi', 'taş', 'gümüş'];
+
+        let bestHero = null;
+        let bestScore = 0;
+        state.wardrobe.filter(i => !i.dirty && (!intents.location || i.location === intents.location)).forEach(item => {
+          const iName = normalizeTr(item.name);
+          const iColor = normalizeTr(item.color);
+          const iFit = normalizeTr(item.fit);
+          let s = 0;
+          garmentWords.forEach(gw => { if (text.includes(gw) && (iName.includes(gw) || iFit.includes(gw))) s += 6; });
+          colorWords.forEach(cw => { if (text.includes(cw) && (iColor.includes(cw) || iName.includes(cw))) s += 4; });
+          if (s >= 6 && s > bestScore) {
+            bestScore = s;
+            bestHero = item;
+          }
+        });
+        if (bestHero) intents.heroItem = bestHero;
+
+        return intents;
+      }
+
+      function executeNaturalLanguage(rawText) {
+        const cleanText = (rawText || '').trim();
+        if (!cleanText) {
+          showToast('Lütfen nasıl bir kombin istediğini tek cümleyle yaz.');
+          return;
+        }
+        const intents = parseTurkishCommand(cleanText);
+        state.studio.virtualItem = null;
+        state.studio.nlPrompt = cleanText;
+        state.studio.nlIntents = {
+          occasion: intents.occasion || null,
+          weather: intents.weather || null,
+          palette: intents.palette || null,
+          fitPref: intents.fitPref || null,
+          location: intents.location || null,
+          heroName: intents.heroItem ? intents.heroItem.name : null
+        };
+
+        if (intents.occasion) state.studio.occasion = intents.occasion;
+        if (intents.weather) state.studio.weather = intents.weather;
+        state.studio.palette = intents.palette || 'Dengeli';
+        state.studio.location = intents.location || 'Tümü';
+        state.studio.fitPref = intents.fitPref || '';
+
+        if (intents.heroItem) {
+          state.studio.heroId = intents.heroItem.id;
+          state.studio.locks = { [intents.heroItem.category]: true };
+        } else {
+          state.studio.heroId = '';
+          state.studio.locks = {};
+        }
+
+        state.studio.outfit = buildOutfit({
+          occasion: state.studio.occasion,
+          weather: state.studio.weather,
+          palette: state.studio.palette,
+          location: state.studio.location,
+          heroId: state.studio.heroId,
+          fitPref: state.studio.fitPref,
+          locks: state.studio.locks
+        });
+
+        const outItem = getItemById(state.studio.outfit['Dış Giyim']);
+        const frgItem = getItemById(state.studio.outfit['Parfüm']);
+        const noteParts = [];
+        if (intents.heroItem) {
+          noteParts.push(`"${intents.heroItem.name}" parçanı merkeze alarak ${state.studio.occasion} için dengeli bir silüet oluşturdum.`);
+        } else if (intents.fitPref === 'Rahat & Özenli') {
+          noteParts.push(`İstediğin rahat ama özenli havayı geniş kesim konforu ile temiz nötr tonları birleştirerek yakaladım.`);
+        } else {
+          noteParts.push(`"${cleanText}" talebine göre ${state.studio.occasion} ortamı ve ${state.studio.weather.toLowerCase()} hava için en uyumlu temiz parçaları seçtim.`);
+        }
+        if (outItem) noteParts.push(`Hava şartlarına karşı ${outItem.name} katmanı eklendi.`);
+        if (frgItem) noteParts.push(`Koku imzası olarak ${frgItem.name} eşleştirildi.`);
+
+        state.studio.nlNote = noteParts.join(' ');
+        saveState();
+        renderStudio();
+        showToast('✦ Komutun çözümlendi ve kombin hazırlandı!');
+      }
+
+      /* ------------------------------------------------------------------
+         7. MISSING PIECE RADAR
+         ------------------------------------------------------------------ */
+      function computeMissingRadar() {
+        const total = Math.max(1, state.wardrobe.length);
+        const darkCnt = state.wardrobe.filter(i => ['black', 'gray'].includes(classifyColor(i.color))).length;
+        const darkPct = Math.round((darkCnt / total) * 100);
+        const outerCnt = state.wardrobe.filter(i => i.category === 'Dış Giyim').length;
+        const botCnt = state.wardrobe.filter(i => i.category === 'Alt').length;
+        const topCnt = state.wardrobe.filter(i => i.category === 'Üst').length;
+
+        return [
+          {
+            id: 'rad1',
+            tag: 'Renk Dengesi',
+            name: darkPct >= 40 ? 'Krem Oversize Triko Kazak' : 'Antrasit Boxy Zip Hoodie',
+            category: 'Üst',
+            fit: darkPct >= 40 ? 'Oversize' : 'Boxy',
+            color: darkPct >= 40 ? 'Krem' : 'Antrasit',
+            hex: darkPct >= 40 ? '#ECE4D4' : '#3A3A3E',
+            price: 2350,
+            unlocks: Math.max(9, botCnt * 2 + outerCnt),
+            desc: darkPct >= 40
+              ? `Dolabının %${darkPct}'i koyu tonlarda. Krem bir üst tüm siyah ve gri altlarınla anında ferah kombinler açar.`
+              : 'Koyu antrasit bir katman parçası açık renk altlarınla güçlü kontrast kurar.',
+            tip: 'Düşük omuz (drop-shoulder), tok duruşlu %100 pamuk veya yün karışımlı dokuma tercih et.'
+          },
+          {
+            id: 'rad2',
+            tag: 'Silüet & Ayakkabı',
+            name: 'Gri Retro Chunky Sneaker',
+            category: 'Ayakkabı',
+            fit: 'Chunky',
+            color: 'Gri',
+            hex: '#8C9096',
+            price: 4600,
+            unlocks: Math.max(10, topCnt * 2),
+            desc: 'Baggy jean ve eşofman paçalarının dökümünü en iyi taşıyan form chunky tabanlı gri bir retro sneaker.',
+            tip: 'Süet + mesh kombinasyonlu, orta-kalın tabanlı gri tonları neredeyse her renkle eşleşir.'
+          },
+          {
+            id: 'rad3',
+            tag: 'Katman Eksiği',
+            name: 'Lacivert Minimalist Overshirt',
+            category: 'Dış Giyim',
+            fit: 'Relaxed',
+            color: 'Lacivert',
+            hex: '#1E293B',
+            price: 2950,
+            unlocks: Math.max(8, topCnt * Math.max(2, botCnt - 2)),
+            desc: 'Serin ve rüzgarlı akşamlarda tişört üstüne açık giyilebilecek bir overshirt kombin derinliğini katlar.',
+            tip: 'Mat düğmeli, tok gabardin veya ince yün karışımlı relaxed kesim seç.'
+          }
+        ];
+      }
+
+      /* ------------------------------------------------------------------
+         8. NAVIGATION & BADGES
+         ------------------------------------------------------------------ */
+      function updateBadges() {
+        const dirty = state.wardrobe.filter(i => i.dirty).length;
+        const care = state.wardrobe.filter(needsSneakerCleaning).length;
+        const wish = state.wishlist.length;
+
+        const bDirty = document.getElementById('badge-dirty');
+        if (bDirty) { bDirty.textContent = dirty; bDirty.classList.toggle('hidden', dirty === 0); }
+        const bWish = document.getElementById('badge-wish');
+        if (bWish) { bWish.textContent = wish; bWish.classList.toggle('hidden', wish === 0); }
+        const bTry = document.getElementById('badge-tryon');
+        if (bTry) bTry.classList.toggle('hidden', !state.studio.virtualItem);
+
+        const sDirty = document.getElementById('sub-dirty-count');
+        const sCare = document.getElementById('sub-care-count');
+        if (sDirty) sDirty.textContent = dirty;
+        if (sCare) sCare.textContent = care;
+      }
+
+      function switchTab(tabId) {
+        state.activeTab = tabId;
+        document.querySelectorAll('.tab-section').forEach(s => s.classList.add('hidden'));
+        const target = document.getElementById('tab-' + tabId);
+        if (target) target.classList.remove('hidden');
+
+        document.querySelectorAll('[data-nav]').forEach(btn => {
+          if (btn.classList.contains('nav-btn') || btn.classList.contains('dock-btn')) {
+            btn.classList.toggle('active', btn.dataset.nav === tabId);
+          }
+        });
+
+        if (tabId === 'studio') renderStudio();
+        if (tabId === 'discover') renderDiscover();
+        if (tabId === 'wardrobe') renderWardrobe();
+        if (tabId === 'planner') renderPlanner();
+        if (tabId === 'sourcing') renderSourcing();
+        if (tabId === 'analytics') renderAnalytics();
+
+        updateBadges();
+        saveState();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      /* ------------------------------------------------------------------
+         9. RENDER: STÜDYO
+         ------------------------------------------------------------------ */
+      function renderStudio() {
+        if (!state.studio.outfit || !Object.keys(state.studio.outfit).length) {
+          state.studio.outfit = buildOutfit(state.studio);
+        }
+
+        document.getElementById('occasion-pills').innerHTML = OCCASIONS.map(o => `
+          <button type="button" class="pill ${state.studio.occasion === o ? 'active' : ''}" data-set-occ="${o}">${o}</button>
+        `).join('');
+
+        document.getElementById('weather-pills').innerHTML = WEATHERS.map(w => `
+          <button type="button" class="pill ${state.studio.weather === w.id ? 'active' : ''}" data-set-weather="${w.id}">
+            <span>${w.icon}</span> ${w.label} <span style="opacity:0.65;" class="tabular">${w.temp}</span>
+          </button>
+        `).join('');
+
+        document.getElementById('select-palette').value = state.studio.palette || 'Dengeli';
+        document.getElementById('select-location').value = state.studio.location || 'Tümü';
+
+        const heroSel = document.getElementById('select-hero');
+        const cleanItems = state.wardrobe.filter(i => !i.dirty);
+        heroSel.innerHTML = `<option value="">Yok — Otomatik Seç</option>` +
+          cleanItems.map(i => `<option value="${i.id}" ${state.studio.heroId === i.id ? 'selected' : ''}>${i.category}: ${i.name}</option>`).join('');
+
+        // NLP Intent bar
+        const nlInput = document.getElementById('nl-input');
+        if (state.studio.nlPrompt && document.activeElement !== nlInput) nlInput.value = state.studio.nlPrompt;
+        const intentBar = document.getElementById('nl-intent-bar');
+        const intentChips = document.getElementById('nl-intent-chips');
+        const nlpCoachBox = document.getElementById('coach-nlp-box');
+        const nlpCoachNote = document.getElementById('coach-nlp-note');
+
+        if (state.studio.nlPrompt && state.studio.nlIntents) {
+          const it = state.studio.nlIntents;
+          const pills = [];
+          pills.push(`Ortam: ${it.occasion || state.studio.occasion}`);
+          pills.push(`Hava: ${it.weather || state.studio.weather}`);
+          if (it.palette) pills.push(`Palet: ${it.palette}`);
+          if (it.fitPref) pills.push(`Stil: ${it.fitPref}`);
+          if (it.location) pills.push(`Lokasyon: ${it.location}`);
+          if (it.heroName) pills.push(`Odak: ${it.heroName}`);
+          intentChips.innerHTML = pills.map(p => `<span class="badge badge-gold">${p}</span>`).join('');
+          intentBar.classList.remove('hidden');
+          if (state.studio.nlNote) {
+            nlpCoachNote.textContent = state.studio.nlNote;
+            nlpCoachBox.classList.remove('hidden');
+          }
+        } else {
+          intentBar.classList.add('hidden');
+          nlpCoachBox.classList.add('hidden');
+        }
+
+        // Virtual Try-On Banner
+        const vItem = state.studio.virtualItem;
+        const tryBanner = document.getElementById('tryon-banner');
+        if (vItem) {
+          tryBanner.classList.remove('hidden');
+          document.getElementById('tryon-title').textContent = `${vItem.name} (${vItem.color} • ${vItem.fit})`;
+          document.getElementById('tryon-unlocks').textContent = `+${vItem.unlocks || 10} Yeni Kombin`;
+        } else {
+          tryBanner.classList.add('hidden');
+        }
+
+        // Outfit Board Cards
+        document.getElementById('studio-grid').innerHTML = Object.entries(state.studio.outfit).map(([cat, id]) => {
+          const item = getItemById(id);
+          if (!item) return '';
+          const locked = !!state.studio.locks[cat];
+          const isHero = state.studio.heroId === item.id;
+          const isVirt = !!item.isVirtual;
+
+          return `
+            <div class="garment-card ${isVirt ? 'is-virtual' : isHero ? 'is-hero' : ''}">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+                <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                  <span style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);">${cat}</span>
+                  ${isVirt ? `<span class="badge badge-gold" style="font-size:9.5px;padding:2px 7px;">Sanal Deneme</span>` : ''}
+                  ${isHero ? `<span class="badge badge-neutral" style="font-size:9.5px;padding:2px 7px;">Odak</span>` : ''}
+                </div>
+                <div style="display:flex;gap:5px;">
+                  <button type="button" class="icon-btn" data-swap-slot="${cat}" title="Tek Parça Değiştir">↻</button>
+                  <button type="button" class="icon-btn ${locked ? 'locked' : ''}" data-lock-slot="${cat}" title="${locked ? 'Kilidi Aç' : 'Kilitle'}">${locked ? '🔒' : '🔓'}</button>
+                </div>
+              </div>
+              ${renderSwatchVisual(item)}
+              <div>
+                <h4 class="garment-title">${item.name}</h4>
+                <div class="meta-row">
+                  <span class="badge badge-neutral"><span class="swatch-dot" style="background:${item.hex}"></span>${item.color}</span>
+                  <span class="badge badge-neutral">${item.fit}</span>
+                  <span class="badge badge-neutral">${item.location || 'Ev 1'}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Live Style Coach
+        const ev = evaluateOutfit(state.studio.outfit, state.studio.occasion, state.studio.weather);
+        document.getElementById('coach-score').textContent = ev.total.toFixed(1);
+        document.getElementById('coach-summary').textContent = ev.summary;
+
+        const vBadge = document.getElementById('coach-verdict');
+        vBadge.textContent = ev.verdict;
+        vBadge.className = 'badge ' + (ev.total >= 9.2 ? 'badge-success' : ev.total >= 8.5 ? 'badge-gold' : 'badge-warning');
+
+        const ring = document.getElementById('score-ring');
+        const circ = 263.89;
+        ring.style.strokeDashoffset = (circ - circ * (ev.total / 10)).toFixed(2);
+        ring.style.stroke = ev.total >= 9.2 ? 'var(--success)' : ev.total >= 8.5 ? 'var(--accent)' : 'var(--warning)';
+
+        document.getElementById('coach-metrics').innerHTML = ev.metrics.map(m => `
+          <div class="metric-item">
+            <div class="metric-head">
+              <span>${m.label}</span>
+              <span class="tabular">${m.score.toFixed(1)} / 10</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${Math.min(100, m.score * 10)}%;background:${m.score >= 9.2 ? 'var(--success)' : m.score >= 8.5 ? 'var(--accent)' : 'var(--warning)'};"></div>
+            </div>
+            <p class="metric-note">${m.comment}</p>
+          </div>
+        `).join('');
+
+        updateBadges();
+      }
+
+      /* ------------------------------------------------------------------
+         10. RENDER: KEŞFET (STYLE TINDER + TOUCH SWIPE)
+         ------------------------------------------------------------------ */
+      function createTinderCard() {
+        const occ = OCCASIONS[Math.floor(Math.random() * OCCASIONS.length)];
+        const w = WEATHERS[Math.floor(Math.random() * WEATHERS.length)].id;
+        const outfit = buildOutfit({ occasion: occ, weather: w, palette: 'Dengeli', location: 'Tümü' });
+        return { occasion: occ, weather: w, outfit, evalRes: evaluateOutfit(outfit, occ, w) };
+      }
+
+      function attachTinderTouch() {
+        const card = document.getElementById('active-tinder-card');
+        if (!card) return;
+        let startX = 0;
+        card.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        card.addEventListener('touchend', e => {
+          const dx = e.changedTouches[0].clientX - startX;
+          if (dx > 60) swipeTinder('right');
+          else if (dx < -60) swipeTinder('left');
+        }, { passive: true });
+      }
+
+      function renderDiscover() {
+        if (!state.tinderCard) state.tinderCard = createTinderCard();
+        const c = state.tinderCard;
+        const wrap = document.getElementById('tinder-card-wrap');
+
+        const itemsHtml = Object.entries(c.outfit).map(([cat, id]) => {
+          const it = getItemById(id);
+          if (!it) return '';
+          return `
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:var(--bg-subtle);">
+              <span class="swatch-dot" style="width:18px;height:18px;background:${it.hex};"></span>
+              <div style="min-width:0;">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);">${cat}</div>
+                <div style="font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${it.name}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        wrap.innerHTML = `
+          <div id="active-tinder-card" class="swipe-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <span class="badge badge-gold">${c.occasion}</span>
+                <span class="badge badge-neutral">${c.weather}</span>
+              </div>
+              <span class="badge badge-success tabular">★ ${c.evalRes.total} / 10</span>
+            </div>
+            <div class="tinder-items-grid">${itemsHtml}</div>
+            <p style="margin:0;padding:12px 14px;border-radius:14px;background:var(--bg-subtle);font-size:12.5px;color:var(--text-secondary);">
+              <strong style="color:var(--text-primary);">Stil Koçu:</strong> ${c.evalRes.summary}
+            </p>
+          </div>
+        `;
+        attachTinderTouch();
+
+        document.getElementById('fav-count').textContent = `${state.favorites.length} Kombin`;
+        const fg = document.getElementById('favorites-grid');
+        if (!state.favorites.length) {
+          fg.innerHTML = `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:36px;">Henüz favori kombinin yok. Kartları sağa kaydırarak veya Stüdyo'dan ekleyebilirsin.</div>`;
+        } else {
+          fg.innerHTML = state.favorites.map(f => {
+            const list = Object.values(f.outfit).map(getItemById).filter(Boolean);
+            return `
+              <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <span class="badge badge-neutral">${f.occasion}</span>
+                    <span class="badge badge-success tabular">★ ${f.score}</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    ${list.map(i => `<div style="display:flex;align-items:center;gap:8px;font-size:12.5px;"><span class="swatch-dot" style="background:${i.hex}"></span><span>${i.name}</span></div>`).join('')}
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;padding-top:10px;border-top:1px solid var(--border);">
+                  <button class="btn btn-primary btn-xs" style="flex:1;" data-load-fav="${f.id}">Stüdyoda Aç</button>
+                  <button class="btn btn-danger-soft btn-xs" data-del-fav="${f.id}">Sil</button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      function swipeTinder(dir) {
+        const card = document.getElementById('active-tinder-card');
+        if (!card) return;
+        card.classList.add(dir === 'right' ? 'go-right' : 'go-left');
+        if (dir === 'right' && state.tinderCard) {
+          state.favorites.unshift({
+            id: 'fav_' + Date.now(),
+            occasion: state.tinderCard.occasion,
+            weather: state.tinderCard.weather,
+            score: state.tinderCard.evalRes.total,
+            outfit: clone(state.tinderCard.outfit)
+          });
+          saveState();
+          showToast('Kombin favorilerine eklendi ♥');
+        }
+        setTimeout(() => {
+          state.tinderCard = createTinderCard();
+          renderDiscover();
+        }, 260);
+      }
+
+      /* ------------------------------------------------------------------
+         11. RENDER: GARDIROP
+         ------------------------------------------------------------------ */
+      function renderWardrobeCard(item) {
+        const cpw = item.wearCount > 0 ? Math.round((item.price || 0) / item.wearCount) : (item.price || 0);
+        return `
+          <div class="garment-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);">${item.category}</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="badge ${item.dirty ? 'badge-warning' : 'badge-success'}">${item.dirty ? 'Kirli' : 'Temiz'}</span>
+                <button class="icon-btn" style="width:26px;height:26px;font-size:11px;" data-del-item="${item.id}" title="Sil">✕</button>
+              </div>
+            </div>
+            ${renderSwatchVisual(item)}
+            <div>
+              <h4 class="garment-title">${item.name}</h4>
+              <div class="meta-row">
+                <span class="badge badge-neutral"><span class="swatch-dot" style="background:${item.hex}"></span>${item.color}</span>
+                <span class="badge badge-neutral">${item.fit}</span>
+                <span class="badge badge-neutral">${item.location}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-muted);margin-top:8px;" class="tabular">
+                <span>${item.wearCount || 0} giyim</span>
+                <span>₺${cpw.toLocaleString('tr-TR')} / giyim</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:10px;border-top:1px solid var(--border);">
+              <button class="btn btn-secondary btn-xs" data-toggle-dirty="${item.id}">${item.dirty ? '🫧 Temize Al' : '🧺 Kirliye At'}</button>
+              <button class="btn btn-primary btn-xs" data-make-hero="${item.id}">Odak Yap</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderWardrobe() {
+        updateBadges();
+        const careItems = state.wardrobe.filter(needsSneakerCleaning);
+        const topBanner = document.getElementById('wardrobe-top-care-banner');
+        if (careItems.length) {
+          topBanner.classList.remove('hidden');
+          topBanner.innerHTML = `
+            <div class="card" style="padding:14px 18px;border-left:4px solid var(--warning);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+              <div>
+                <span class="badge badge-warning" style="margin-bottom:3px;">Beyaz Sneaker Bakım Uyarısı</span>
+                <div style="font-size:13px;font-weight:600;">${careItems[0].name} 5+ giyimdir temizlenmedi.</div>
+              </div>
+              <button class="btn btn-success btn-xs" data-mark-cleaned="${careItems[0].id}">Temizlendi ✓</button>
+            </div>
+          `;
+        } else {
+          topBanner.classList.add('hidden');
+        }
+
+        document.getElementById('wardrobe-cat-pills').innerHTML = CATEGORIES.map(c => `
+          <button type="button" class="pill ${state.wardrobeCat === c ? 'active' : ''}" data-wcat="${c}">${c}</button>
+        `).join('');
+
+        const loc = document.getElementById('wardrobe-loc-filter').value;
+        const q = normalizeTr(document.getElementById('wardrobe-search').value);
+
+        const filtered = state.wardrobe.filter(i => {
+          if (state.wardrobeCat !== 'Tümü' && i.category !== state.wardrobeCat) return false;
+          if (loc !== 'Tümü' && i.location !== loc) return false;
+          if (q && !normalizeTr(i.name).includes(q) && !normalizeTr(i.color).includes(q)) return false;
+          return true;
+        });
+
+        const wGrid = document.getElementById('wardrobe-grid');
+        wGrid.innerHTML = filtered.length
+          ? filtered.map(renderWardrobeCard).join('')
+          : `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:36px;">Aramana uygun parça bulunamadı.</div>`;
+
+        const dirtyItems = state.wardrobe.filter(i => i.dirty);
+        document.getElementById('laundry-grid').innerHTML = dirtyItems.length
+          ? dirtyItems.map(renderWardrobeCard).join('')
+          : `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:36px;">✨ Kirli sepeti tamamen boş!</div>`;
+
+        document.getElementById('care-alerts').innerHTML = careItems.length
+          ? careItems.map(i => `
+              <div class="card" style="border-left:4px solid var(--warning);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+                <div>
+                  <span class="badge badge-warning" style="margin-bottom:4px;">Bakım Uyarısı • 5+ Giyim</span>
+                  <h4 style="margin:0;font-size:15px;">${i.name}</h4>
+                  <p style="margin:2px 0 0;font-size:12.5px;color:var(--text-secondary);">Toplam ${i.wearCount} kez giyildi — ${i.care || 'Köpük temizleyici ile sil.'}</p>
+                </div>
+                <button class="btn btn-success btn-sm" data-mark-cleaned="${i.id}">Temizlendi ✓</button>
+              </div>
+            `).join('')
+          : `<div class="card" style="color:var(--success);font-weight:500;">✓ Tüm beyaz sneaker ve hassas parçaların bakımı güncel.</div>`;
+
+        document.getElementById('care-notes-list').innerHTML = state.wardrobe.map(i => `
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:13px;font-weight:600;">${i.name}</div>
+              <div style="font-size:12px;color:var(--text-secondary);">${i.care || '30°C hassas program.'}</div>
+            </div>
+            <span class="badge badge-neutral">${i.category}</span>
+          </div>
+        `).join('');
+      }
+
+      /* ------------------------------------------------------------------
+         12. RENDER: PLANLAYICI & VALİZ
+         ------------------------------------------------------------------ */
+      function renderPlanner() {
+        const occCountMap = {};
+        DAYS.forEach(d => {
+          const p = state.weeklyPlan[d];
+          if (p && p.outfit) {
+            const sig = `${p.occasion}|${p.outfit['Üst'] || ''}|${p.outfit['Alt'] || ''}`;
+            occCountMap[sig] = (occCountMap[sig] || 0) + 1;
+          }
+        });
+
+        document.getElementById('weekly-grid').innerHTML = DAYS.map(day => {
+          const plan = state.weeklyPlan[day];
+          const occ = (plan && plan.occasion) || 'Günlük / Okul';
+          const items = plan && plan.outfit ? Object.values(plan.outfit).map(getItemById).filter(Boolean) : [];
+          const sig = plan && plan.outfit ? `${occ}|${plan.outfit['Üst'] || ''}|${plan.outfit['Alt'] || ''}` : '';
+          const dupWeek = sig && occCountMap[sig] > 1;
+          const dupHistory = plan && plan.outfit && state.socialMemory.some(m => m.occasion === occ && m.items.includes(plan.outfit['Üst']) && m.items.includes(plan.outfit['Alt']));
+
+          return `
+            <div class="card" style="padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <strong style="font-size:13px;">${day}</strong>
+                  ${plan ? `<span class="badge badge-success tabular">${plan.score}</span>` : ''}
+                </div>
+                <select class="select" style="height:34px;font-size:12px;margin-bottom:8px;" data-day-occ="${day}">
+                  ${OCCASIONS.map(o => `<option value="${o}" ${o === occ ? 'selected' : ''}>${o}</option>`).join('')}
+                </select>
+                ${(dupWeek || dupHistory) ? `<div style="padding:6px 8px;border-radius:8px;background:var(--warning-soft);color:var(--warning);font-size:10.5px;margin-bottom:8px;">⚠️ Sosyal Hafıza: Aynı ortamda tekrar!</div>` : ''}
+                ${items.length
+                  ? `<div style="display:flex;flex-direction:column;gap:5px;">${items.slice(0, 4).map(i => `<div style="display:flex;align-items:center;gap:6px;font-size:11.5px;"><span class="swatch-dot" style="background:${i.hex}"></span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.name}</span></div>`).join('')}</div>`
+                  : `<p style="font-size:11.5px;color:var(--text-muted);text-align:center;margin:14px 0;">Planlanmadı</p>`}
+              </div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <button class="btn btn-secondary btn-xs" style="width:100%;" data-assign-studio="${day}">Stüdyodakini Ata</button>
+                <button class="btn btn-primary btn-xs" style="width:100%;" data-assign-random="${day}">${plan ? 'Yenile' : '+ Öner'}</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        document.getElementById('memory-count').textContent = `${state.socialMemory.length} Kayıt`;
+        document.getElementById('social-memory-list').innerHTML = state.socialMemory.length
+          ? state.socialMemory.map(m => {
+              const names = m.items.map(id => { const it = getItemById(id); return it ? it.name : null; }).filter(Boolean);
+              return `
+                <div style="padding:12px 14px;border-radius:14px;background:var(--bg-subtle);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;">
+                  <div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                      <strong style="font-size:12.5px;">${m.date}</strong>
+                      <span class="badge badge-gold">${m.occasion}</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);">${names.join(' • ')}</div>
+                  </div>
+                  <span class="badge badge-success tabular">★ ${m.score}</span>
+                </div>
+              `;
+            }).join('')
+          : `<p style="color:var(--text-muted);font-size:13px;">Henüz kayıtlı giyim geçmişi yok.</p>`;
+
+        renderSuitcase();
+      }
+
+      function renderSuitcase() {
+        const box = document.getElementById('suitcase-result');
+        if (!state.suitcase) { box.innerHTML = ''; return; }
+        const s = state.suitcase;
+        const packed = s.items.filter(i => i.packed).length;
+        const pct = Math.round((packed / Math.max(1, s.items.length)) * 100);
+        box.innerHTML = `
+          <div class="card">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;">
+              <div>
+                <h3 class="serif" style="margin:0;font-size:20px;">${s.days} Günlük Kapsül Valiz (${s.weather})</h3>
+                <p class="page-subtitle">Sadece <strong>${s.items.length} parça</strong> ile <strong style="color:var(--success);">${s.combos} farklı kombin</strong>.</p>
+              </div>
+              <span class="badge badge-neutral tabular">${packed} / ${s.items.length} Hazır</span>
+            </div>
+            <div class="bar-track" style="height:8px;margin-bottom:14px;">
+              <div class="bar-fill" style="width:${pct}%;background:var(--success);"></div>
+            </div>
+            <div class="grid-3">
+              ${s.items.map(i => `
+                <div class="checklist-item ${i.packed ? 'checked' : ''}" data-toggle-pack="${i.id}">
+                  <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                    <span>${i.packed ? '☑' : '☐'}</span>
+                    <span class="swatch-dot" style="background:${i.hex}"></span>
+                    <span style="font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;${i.packed ? 'text-decoration:line-through;' : ''}">${i.name}</span>
+                  </div>
+                  <span style="font-size:10.5px;color:var(--text-muted);">${i.category}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      /* ------------------------------------------------------------------
+         13. RENDER: TEMİN & ALIŞVERİŞ + ANALİZ
+         ------------------------------------------------------------------ */
+      function renderRadarCardsInto(containerId) {
+        const list = computeMissingRadar();
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        el.innerHTML = list.map((r, idx) => `
+          <div class="card" style="padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;background:var(--bg-subtle);">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span class="badge badge-gold">${r.tag}</span>
+                <span class="badge badge-success tabular">+${r.unlocks} Kombin</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="swatch-dot" style="width:12px;height:12px;background:${r.hex}"></span>
+                <strong style="font-size:14px;">${r.name}</strong>
+              </div>
+              <p style="margin:0;font-size:12px;color:var(--text-secondary);line-height:1.45;">${r.desc}</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <button class="btn btn-gold btn-xs" data-radar-try="${idx}">Stüdyoda Dene</button>
+                <button class="btn btn-primary btn-xs" data-radar-source="${idx}">Temin Et</button>
+              </div>
+              <button class="btn btn-secondary btn-xs" style="width:100%;" data-radar-wish="${idx}">+ Listeye Ekle (₺${r.price.toLocaleString('tr-TR')})</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderSourcing() {
+        const spent = Number(state.budgetSpent) || 0;
+        const limit = Number(state.budget) || 12000;
+        const rem = limit - spent;
+        const pct = Math.min(100, Math.round((spent / Math.max(1, limit)) * 100));
+
+        document.getElementById('budget-spent').textContent = `₺${spent.toLocaleString('tr-TR')}`;
+        document.getElementById('budget-limit').textContent = `₺${limit.toLocaleString('tr-TR')}`;
+        const remEl = document.getElementById('budget-remaining');
+        remEl.textContent = rem >= 0 ? `Kalan: ₺${rem.toLocaleString('tr-TR')}` : `Aşım: ₺${Math.abs(rem).toLocaleString('tr-TR')}`;
+        remEl.className = 'badge tabular ' + (rem >= 0 ? 'badge-success' : 'badge-danger');
+
+        const bar = document.getElementById('budget-bar');
+        bar.style.width = `${pct}%`;
+        bar.style.background = rem < 0 ? 'var(--danger)' : 'var(--accent)';
+
+        document.getElementById('wish-count').textContent = `${state.wishlist.length} Parça`;
+        const wg = document.getElementById('wishlist-grid');
+        if (!state.wishlist.length) {
+          wg.innerHTML = `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:36px;">Alınacaklar listen boş. Aşağıdaki Eksik Parça Radarı'ndan veya yukarıdaki butondan parça ekleyebilirsin.</div>`;
+        } else {
+          wg.innerHTML = state.wishlist.map(w => `
+            <div class="garment-card">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span class="badge badge-neutral">${w.category}</span>
+                <button class="icon-btn" style="width:26px;height:26px;font-size:11px;" data-del-wish="${w.id}">✕</button>
+              </div>
+              ${renderSwatchVisual(w)}
+              <div>
+                <h4 class="garment-title">${w.name}</h4>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                  <span class="badge badge-neutral"><span class="swatch-dot" style="background:${w.hex}"></span>${w.color} • ${w.fit}</span>
+                  <strong class="tabular" style="font-size:13.5px;">₺${Number(w.price || 0).toLocaleString('tr-TR')}</strong>
+                </div>
+                ${w.tip ? `<p style="margin:6px 0 0;font-size:11.5px;color:var(--text-secondary);">${w.tip}</p>` : ''}
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;padding-top:10px;border-top:1px solid var(--border);">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                  <button class="btn btn-gold btn-xs" data-wish-try="${w.id}">Stüdyoda Dene</button>
+                  <button class="btn btn-primary btn-xs" data-wish-source="${w.id}">Temin Et</button>
+                </div>
+                <button class="btn btn-success btn-xs" style="width:100%;" data-wish-buy="${w.id}">✓ Satın Aldım → Dolaba Aktar</button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        renderRadarCardsInto('sourcing-radar-grid');
+        updateBadges();
+      }
+
+      function renderAnalytics() {
+        const totalItems = state.wardrobe.length;
+        const totalVal = state.wardrobe.reduce((s, i) => s + (Number(i.price) || 0), 0);
+        const cleanCnt = state.wardrobe.filter(i => !i.dirty).length;
+        const cleanPct = totalItems ? Math.round((cleanCnt / totalItems) * 100) : 100;
+        const totalWears = state.wardrobe.reduce((s, i) => s + (i.wearCount || 0), 0);
+        const avgCpw = totalWears ? Math.round(totalVal / totalWears) : 0;
+
+        document.getElementById('analytics-kpis').innerHTML = [
+          { lbl: 'Toplam Dolap Değeri', val: `₺${totalVal.toLocaleString('tr-TR')}`, sub: `${totalItems} kayıtlı parça` },
+          { lbl: 'Temiz / Kirli Oranı', val: `%${cleanPct}`, sub: `${cleanCnt} temiz • ${totalItems - cleanCnt} kirli` },
+          { lbl: 'Ort. Giyim Maliyeti', val: `₺${avgCpw.toLocaleString('tr-TR')}`, sub: `${totalWears} toplam giyim` },
+          { lbl: 'Alınacaklar', val: `${state.wishlist.length} Parça`, sub: `₺${state.wishlist.reduce((s, w) => s + (Number(w.price) || 0), 0).toLocaleString('tr-TR')} hedef` }
+        ].map(k => `
+          <div class="card">
+            <span class="field-label">${k.lbl}</span>
+            <div class="serif tabular" style="font-size:26px;font-weight:600;">${k.val}</div>
+            <div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">${k.sub}</div>
+          </div>
+        `).join('');
+
+        renderRadarCardsInto('analytics-radar-grid');
+
+        const cpwList = state.wardrobe
+          .filter(i => (i.price || 0) > 0 && (i.wearCount || 0) > 0)
+          .map(i => Object.assign({}, i, { cpw: Math.round(i.price / i.wearCount) }))
+          .sort((a, b) => a.cpw - b.cpw)
+          .slice(0, 5);
+
+        document.getElementById('cpw-list').innerHTML = cpwList.map(i => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:12px;background:var(--bg-subtle);">
+            <div>
+              <div style="font-size:13px;font-weight:600;">${i.name}</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">${i.wearCount} giyim • ₺${i.price.toLocaleString('tr-TR')}</div>
+            </div>
+            <span class="badge badge-success tabular">₺${i.cpw} / giyim</span>
+          </div>
+        `).join('');
+
+        const dusty = state.wardrobe.filter(i => (i.lastWornDays || 0) >= 45 || (i.wearCount || 0) === 0);
+        document.getElementById('dusty-list').innerHTML = dusty.length
+          ? dusty.map(i => `
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--bg-subtle);">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">${i.name}</div>
+                  <div style="font-size:11.5px;color:var(--text-muted);">${i.wearCount === 0 ? 'Hiç giyilmedi' : `${i.lastWornDays} gündür giyilmedi`}</div>
+                </div>
+                <button class="btn btn-primary btn-xs" data-make-hero="${i.id}">Stüdyoda Kurtar</button>
+              </div>
+            `).join('')
+          : `<p style="color:var(--text-muted);font-size:13px;">Harika! Dolabında tozlanan parça yok.</p>`;
+      }
+
+      /* ------------------------------------------------------------------
+         14. MODALS: STORE RADAR, EMERGENCY, VIRTUAL TRY-ON, WORN
+         ------------------------------------------------------------------ */
+      function openSourcingModal(item) {
+        activeSourcingItem = item;
+        document.getElementById('sourcing-modal-title').textContent = item.name;
+        const q = `${item.color || ''} ${item.fit || ''} ${item.name || ''}`.replace(/\s+/g, ' ').trim();
+        document.getElementById('sourcing-query-input').value = q;
+        document.getElementById('sourcing-modal-tip').textContent = item.tip || `${item.fit || 'Modern'} kesimde, tok duruşlu ve temiz dikişli kumaşlara odaklan.`;
+        renderSourcingStores();
+        openModal('modal-sourcing');
+      }
+
+      function renderSourcingStores() {
+        const q = document.getElementById('sourcing-query-input').value.trim() || (activeSourcingItem && activeSourcingItem.name) || '';
+        document.getElementById('sourcing-stores-grid').innerHTML = STORES.map(s => `
+          <a href="${s.url(q)}" target="_blank" rel="noopener noreferrer" class="store-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <strong style="font-size:13.5px;">${s.name}</strong>
+              <span style="color:var(--accent-text);">↗</span>
+            </div>
+            <span style="font-size:11px;color:var(--text-muted);">${s.tag}</span>
+          </a>
+        `).join('');
+      }
+
+      function startVirtualTryOn(item) {
+        const vObj = Object.assign({}, item, {
+          id: 'vtry_' + Date.now(),
+          isVirtual: true,
+          location: 'Sanal Deneme'
+        });
+        state.studio.virtualItem = vObj;
+        state.studio.heroId = '';
+        state.studio.locks = { [vObj.category]: true };
+        state.studio.location = 'Tümü';
+        state.studio.outfit = buildOutfit({
+          occasion: state.studio.occasion,
+          weather: state.studio.weather,
+          palette: state.studio.palette,
+          location: 'Tümü',
+          virtualItem: vObj
+        });
+        saveState();
+        switchTab('studio');
+        showToast(`✦ "${vObj.name}" Stüdyoda sanal olarak deneniyor!`);
+      }
+
+      function openEmergencyModal() {
+        emergencyOptions = [];
+        for (let i = 0; i < 8; i++) {
+          const outfit = buildOutfit({ occasion: state.studio.occasion, weather: state.studio.weather, palette: 'Dengeli', location: state.studio.location });
+          const ev = evaluateOutfit(outfit, state.studio.occasion, state.studio.weather);
+          emergencyOptions.push({ outfit, score: ev.total });
+        }
+        emergencyOptions.sort((a, b) => b.score - a.score);
+        emergencyOptions = emergencyOptions.slice(0, 3);
+
+        document.getElementById('emergency-list').innerHTML = emergencyOptions.map((opt, idx) => `
+          <div class="card" style="padding:16px;background:var(--bg-subtle);display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <span class="field-label" style="margin:0;">Seçenek ${idx + 1}</span>
+                <span class="badge badge-success tabular">★ ${opt.score}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                ${Object.values(opt.outfit).map(id => {
+                  const it = getItemById(id);
+                  return it ? `<div style="display:flex;align-items:center;gap:7px;font-size:12px;"><span class="swatch-dot" style="background:${it.hex}"></span><span>${it.name}</span></div>` : '';
+                }).join('')}
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" style="width:100%;" data-pick-emerg="${idx}">Stüdyoda Aç</button>
+          </div>
+        `).join('');
+        openModal('modal-emergency');
+      }
+
+      function openWornModal() {
+        if (state.studio.virtualItem) {
+          showToast('Sanal deneme parçasını giymek için önce satın alıp dolaba aktar.');
+          return;
+        }
+        const sel = document.getElementById('worn-occasion');
+        sel.innerHTML = OCCASIONS.map(o => `<option value="${o}" ${o === state.studio.occasion ? 'selected' : ''}>${o}</option>`).join('');
+
+        const wearables = Object.values(state.studio.outfit)
+          .map(getItemById)
+          .filter(i => i && ['Üst', 'Alt', 'Dış Giyim'].includes(i.category));
+
+        document.getElementById('worn-checklist').innerHTML = wearables.map(i => `
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:var(--bg-subtle);cursor:pointer;">
+            <span style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <input type="checkbox" class="worn-chk" value="${i.id}" ${i.category === 'Üst' ? 'checked' : ''} />
+              ${i.name}
+            </span>
+            <span style="font-size:11px;color:var(--text-muted);">${i.category}</span>
+          </label>
+        `).join('');
+
+        checkWornWarning();
+        openModal('modal-worn');
+      }
+
+      function checkWornWarning() {
+        const occ = document.getElementById('worn-occasion').value;
+        const topId = state.studio.outfit['Üst'];
+        const botId = state.studio.outfit['Alt'];
+        const hit = state.socialMemory.find(m => m.occasion === occ && m.items.includes(topId) && m.items.includes(botId));
+        const warn = document.getElementById('worn-repeat-warn');
+        if (hit) {
+          warn.textContent = `⚠️ Sosyal Hafıza: Bu kombini ${hit.date} tarihindeki "${occ}" ortamında da giymiştin.`;
+          warn.classList.remove('hidden');
+        } else {
+          warn.classList.add('hidden');
+        }
+      }
+
+      /* ------------------------------------------------------------------
+         15. PHOTO COLOR EXTRACTION (ADD ITEM MODAL)
+         ------------------------------------------------------------------ */
+      function rgbToHex(r, g, b) {
+        return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+      }
+
+      function guessColorName(r, g, b) {
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+        const sat = max === 0 ? 0 : (max - min) / max;
+        if (lum < 48) return 'Siyah';
+        if (lum > 224 && sat < 0.16) return 'Beyaz';
+        if (sat < 0.15) return lum < 115 ? 'Antrasit' : 'Gri';
+        if (r > g && r > b) return lum > 180 ? 'Krem' : g > 95 ? 'Kahverengi' : 'Bordo';
+        if (g >= r && g >= b) return 'Haki';
+        if (b > r && b > g) return lum < 95 ? 'Lacivert' : 'Mavi';
+        return 'Nötr';
+      }
+
+      document.getElementById('input-item-photo').addEventListener('change', e => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          uploadedPhoto = ev.target.result;
+          document.getElementById('photo-preview').innerHTML = `<img src="${uploadedPhoto}" style="width:100%;height:100%;object-fit:cover;" />`;
+          const img = new Image();
+          img.onload = () => {
+            const cv = document.getElementById('color-canvas');
+            const ctx = cv.getContext('2d');
+            cv.width = 24; cv.height = 24;
+            ctx.drawImage(img, 0, 0, 24, 24);
+            const data = ctx.getImageData(4, 4, 16, 16).data;
+            let r = 0, g = 0, b = 0, n = 0;
+            for (let i = 0; i < data.length; i += 4) { r += data[i]; g += data[i + 1]; b += data[i + 2]; n++; }
+            r = Math.round(r / n); g = Math.round(g / n); b = Math.round(b / n);
+            const hex = rgbToHex(r, g, b);
+            const name = guessColorName(r, g, b);
+            document.getElementById('add-hex').value = hex;
+            document.getElementById('add-color').value = name;
+            document.getElementById('photo-hint').textContent = `Otomatik algılandı: ${name} (${hex})`;
+          };
+          img.src = uploadedPhoto;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      /* ------------------------------------------------------------------
+         16. EVENT BINDINGS
+         ------------------------------------------------------------------ */
+      document.getElementById('btn-theme-side').addEventListener('click', toggleTheme);
+      document.getElementById('btn-theme-mob').addEventListener('click', toggleTheme);
+      document.getElementById('btn-emergency-side').addEventListener('click', openEmergencyModal);
+      document.getElementById('btn-emergency-mob').addEventListener('click', openEmergencyModal);
+      document.getElementById('btn-emergency-main').addEventListener('click', openEmergencyModal);
+
+      // iPhone Home Screen Info Modal & Dismiss
+      document.getElementById('btn-ios-side').addEventListener('click', () => openModal('modal-ios'));
+      document.getElementById('btn-ios-mob').addEventListener('click', () => openModal('modal-ios'));
+      document.getElementById('btn-ios-preview-open').addEventListener('click', () => openModal('modal-ios'));
+      document.getElementById('btn-dismiss-ios-tip').addEventListener('click', () => {
+        state.iosTipDismissed = true;
+        document.getElementById('ios-tip-banner').classList.add('hidden');
+        saveState();
+      });
+
+      // Natural Language Spotlight Form
+      document.getElementById('nl-form').addEventListener('submit', e => {
+        e.preventDefault();
+        executeNaturalLanguage(document.getElementById('nl-input').value);
+      });
+      document.getElementById('btn-clear-nl').addEventListener('click', () => {
+        document.getElementById('nl-input').value = '';
+        state.studio.nlPrompt = '';
+        state.studio.nlIntents = null;
+        state.studio.nlNote = '';
+        state.studio.fitPref = '';
+        state.studio.heroId = '';
+        state.studio.locks = {};
+        saveState();
+        renderStudio();
+        showToast('Komut temizlendi.');
+      });
+
+      // Studio Controls
+      document.getElementById('select-palette').addEventListener('change', e => {
+        state.studio.palette = e.target.value;
+        state.studio.outfit = buildOutfit(state.studio);
+        saveState(); renderStudio();
+      });
+      document.getElementById('select-location').addEventListener('change', e => {
+        state.studio.location = e.target.value;
+        state.studio.outfit = buildOutfit(state.studio);
+        saveState(); renderStudio();
+      });
+      document.getElementById('select-hero').addEventListener('change', e => {
+        state.studio.virtualItem = null;
+        state.studio.heroId = e.target.value;
+        state.studio.locks = {};
+        if (state.studio.heroId) {
+          const it = getItemById(state.studio.heroId);
+          if (it) state.studio.locks[it.category] = true;
+        }
+        state.studio.outfit = buildOutfit(state.studio);
+        saveState(); renderStudio();
+      });
+
+      document.getElementById('btn-generate').addEventListener('click', () => {
+        state.studio.outfit = buildOutfit({
+          occasion: state.studio.occasion,
+          weather: state.studio.weather,
+          palette: state.studio.palette,
+          location: state.studio.location,
+          heroId: state.studio.heroId,
+          fitPref: state.studio.fitPref,
+          locks: state.studio.locks,
+          existing: state.studio.outfit,
+          virtualItem: state.studio.virtualItem
+        });
+        saveState(); renderStudio();
+      });
+
+      document.getElementById('btn-save-fav').addEventListener('click', () => {
+        if (state.studio.virtualItem) {
+          showToast('Sanal deneme parçasını favorilemek için önce dolaba ekle.');
+          return;
+        }
+        const ev = evaluateOutfit(state.studio.outfit, state.studio.occasion, state.studio.weather);
+        state.favorites.unshift({
+          id: 'fav_' + Date.now(),
+          occasion: state.studio.occasion,
+          weather: state.studio.weather,
+          score: ev.total,
+          outfit: clone(state.studio.outfit)
+        });
+        saveState();
+        showToast('Kombin favorilere kaydedildi ♥');
+      });
+
+      document.getElementById('btn-worn').addEventListener('click', openWornModal);
+      document.getElementById('worn-occasion').addEventListener('change', checkWornWarning);
+      document.getElementById('btn-confirm-worn').addEventListener('click', () => {
+        const occ = document.getElementById('worn-occasion').value;
+        const dirtyIds = Array.from(document.querySelectorAll('.worn-chk:checked')).map(c => c.value);
+        const ids = Object.values(state.studio.outfit);
+        const ev = evaluateOutfit(state.studio.outfit, occ, state.studio.weather);
+
+        ids.forEach(id => {
+          const it = state.wardrobe.find(x => x.id === id);
+          if (!it) return;
+          it.wearCount = (it.wearCount || 0) + 1;
+          it.lastWornDays = 0;
+          if (dirtyIds.includes(id)) it.dirty = true;
+        });
+
+        state.socialMemory.unshift({
+          id: 'm_' + Date.now(),
+          date: new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' }),
+          occasion: occ,
+          score: ev.total,
+          items: ids
+        });
+
+        closeModal('modal-worn');
+        if (dirtyIds.length) {
+          state.studio.locks = {};
+          state.studio.outfit = buildOutfit(state.studio);
+        }
+        saveState();
+        renderStudio();
+        showToast('Giyim geçmişine kaydedildi & kirli sepeti güncellendi ✓');
+      });
+
+      document.getElementById('btn-tryon-exit').addEventListener('click', () => {
+        state.studio.virtualItem = null;
+        state.studio.locks = {};
+        state.studio.outfit = buildOutfit(state.studio);
+        saveState(); renderStudio();
+        showToast('Sanal denemeden çıkıldı.');
+      });
+      document.getElementById('btn-tryon-source').addEventListener('click', () => {
+        if (state.studio.virtualItem) openSourcingModal(state.studio.virtualItem);
+      });
+
+      // Discover Controls & Keyboard Arrows
+      document.getElementById('btn-tinder-pass').addEventListener('click', () => swipeTinder('left'));
+      document.getElementById('btn-tinder-like').addEventListener('click', () => swipeTinder('right'));
+      document.getElementById('btn-tinder-studio').addEventListener('click', () => {
+        if (!state.tinderCard) return;
+        state.studio.virtualItem = null;
+        state.studio.occasion = state.tinderCard.occasion;
+        state.studio.weather = state.tinderCard.weather;
+        state.studio.outfit = clone(state.tinderCard.outfit);
+        state.studio.locks = {};
+        switchTab('studio');
+      });
+
+      document.addEventListener('keydown', e => {
+        if (state.activeTab !== 'discover') return;
+        if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        if (e.key === 'ArrowLeft') swipeTinder('left');
+        if (e.key === 'ArrowRight') swipeTinder('right');
+      });
+
+      // Wardrobe Controls
+      document.getElementById('wardrobe-loc-filter').addEventListener('change', renderWardrobe);
+      document.getElementById('wardrobe-search').addEventListener('input', renderWardrobe);
+      document.getElementById('btn-wash-all').addEventListener('click', () => {
+        let count = 0;
+        state.wardrobe.forEach(i => { if (i.dirty) { i.dirty = false; count++; } });
+        saveState(); renderWardrobe();
+        showToast(count ? `🫧 ${count} parça yıkandı ve dolaba döndü!` : 'Kirli sepeti zaten boş.');
+      });
+
+      document.getElementById('btn-open-add-item').addEventListener('click', () => {
+        uploadedPhoto = null;
+        document.getElementById('form-add-item').reset();
+        document.getElementById('photo-preview').textContent = '📷';
+        document.getElementById('photo-hint').textContent = 'Yüklediğinde baskın renk otomatik algılanır.';
+        openModal('modal-add-item');
+      });
+
+      document.getElementById('form-add-item').addEventListener('submit', e => {
+        e.preventDefault();
+        const item = {
+          id: 'it_' + Date.now(),
+          name: document.getElementById('add-name').value.trim(),
+          category: document.getElementById('add-cat').value,
+          fit: document.getElementById('add-fit').value,
+          color: document.getElementById('add-color').value.trim(),
+          hex: document.getElementById('add-hex').value,
+          location: document.getElementById('add-loc').value,
+          season: document.getElementById('add-season').value,
+          price: Number(document.getElementById('add-price').value) || 0,
+          occasions: ['Günlük / Okul', 'Kahve', 'Date'],
+          wearCount: 0, lastWornDays: 0, dirty: false,
+          care: '30°C hassas yıkama.',
+          image: uploadedPhoto
+        };
+        state.wardrobe.unshift(item);
+        saveState();
+        closeModal('modal-add-item');
+        renderWardrobe();
+        showToast(`"${item.name}" dolabına eklendi ✓`);
+      });
+
+      // Planner & Suitcase Controls
+      document.getElementById('btn-autofill-week').addEventListener('click', () => {
+        const occs = ['Günlük / Okul', 'Kahve', 'Günlük / Okul', 'Kahve', 'Date', 'Akşam Çıkışı', 'Spor / Rahat'];
+        DAYS.forEach((d, idx) => {
+          const outfit = buildOutfit({ occasion: occs[idx], weather: state.studio.weather, palette: 'Dengeli', location: 'Tümü' });
+          state.weeklyPlan[d] = { occasion: occs[idx], outfit, score: evaluateOutfit(outfit, occs[idx], state.studio.weather).total };
+        });
+        saveState(); renderPlanner();
+        showToast('7 günlük plan oluşturuldu ✓');
+      });
+
+      document.getElementById('btn-gen-suitcase').addEventListener('click', () => {
+        const days = Number(document.getElementById('trip-days').value);
+        const weather = document.getElementById('trip-weather').value;
+        const pick = (cat, n) => state.wardrobe.filter(i => i.category === cat && !i.dirty).slice(0, n);
+        const tops = pick('Üst', Math.min(days, Math.ceil(days * 0.7) + 1));
+        const bots = pick('Alt', days <= 3 ? 2 : 3);
+        const outs = weather === 'Güneşli' ? [] : pick('Dış Giyim', days >= 5 ? 2 : 1);
+        const shos = pick('Ayakkabı', days <= 3 ? 1 : 2);
+        const accs = pick('Aksesuar', 2);
+        const frgs = pick('Parfüm', 1);
+        const all = [...tops, ...bots, ...outs, ...shos, ...accs, ...frgs];
+        const combos = tops.length * bots.length * Math.max(1, shos.length);
+        state.suitcase = {
+          days, weather, combos,
+          items: all.map(i => ({ id: i.id, name: i.name, category: i.category, hex: i.hex, packed: false }))
+        };
+        saveState(); renderSuitcase();
+        showToast(`Kapsül valiz hazır: ${all.length} parça ile ${combos} kombin!`);
+      });
+
+      // Sourcing & Budget Controls
+      document.getElementById('sourcing-query-input').addEventListener('input', renderSourcingStores);
+      document.getElementById('btn-copy-query').addEventListener('click', () => {
+        const inp = document.getElementById('sourcing-query-input');
+        inp.select();
+        try {
+          document.execCommand('copy');
+          showToast('Arama sorgusu kopyalandı ✓');
+        } catch (e) {
+          showToast('Metni manuel kopyalayabilirsin.');
+        }
+      });
+
+      document.getElementById('btn-open-add-wish').addEventListener('click', () => {
+        document.getElementById('form-add-wish').reset();
+        openModal('modal-add-wish');
+      });
+
+      document.getElementById('form-add-wish').addEventListener('submit', e => {
+        e.preventDefault();
+        const w = {
+          id: 'w_' + Date.now(),
+          name: document.getElementById('wish-name').value.trim(),
+          category: document.getElementById('wish-cat').value,
+          fit: document.getElementById('wish-fit').value,
+          color: document.getElementById('wish-color').value.trim(),
+          hex: document.getElementById('wish-hex').value,
+          price: Number(document.getElementById('wish-price').value) || 0,
+          tip: document.getElementById('wish-tip').value.trim()
+        };
+        state.wishlist.unshift(w);
+        saveState();
+        closeModal('modal-add-wish');
+        renderSourcing();
+        showToast(`"${w.name}" alışveriş listesine eklendi ✓`);
+      });
+
+      document.getElementById('btn-edit-budget').addEventListener('click', () => {
+        document.getElementById('input-budget').value = state.budget;
+        openModal('modal-budget');
+      });
+      document.getElementById('btn-save-budget').addEventListener('click', () => {
+        const v = Number(document.getElementById('input-budget').value);
+        if (v > 0) { state.budget = v; saveState(); renderSourcing(); }
+        closeModal('modal-budget');
+        showToast('Bütçe güncellendi ✓');
+      });
+
+      document.getElementById('btn-reset-data').addEventListener('click', () => {
+        safeStorage.remove(STORAGE_KEY);
+        seedDefaults();
+        state.studio.virtualItem = null;
+        state.studio.outfit = buildOutfit(state.studio);
+        saveState();
+        switchTab('studio');
+        showToast('Tüm veriler varsayılana sıfırlandı.');
+      });
+
+      // Global Delegated Click Handler
+      document.body.addEventListener('click', e => {
+        const navEl = e.target.closest('[data-nav]');
+        if (navEl) { switchTab(navEl.dataset.nav); return; }
+
+        const closeEl = e.target.closest('[data-close-modal]');
+        if (closeEl) { closeModal(closeEl.dataset.closeModal); return; }
+
+        if (e.target.classList.contains('modal-backdrop')) {
+          e.target.classList.add('hidden');
+          return;
+        }
+
+        const nlChip = e.target.closest('.nl-example');
+        if (nlChip) {
+          document.getElementById('nl-input').value = nlChip.dataset.prompt;
+          executeNaturalLanguage(nlChip.dataset.prompt);
+          return;
+        }
+
+        const occBtn = e.target.closest('[data-set-occ]');
+        if (occBtn) {
+          state.studio.occasion = occBtn.dataset.setOcc;
+          state.studio.outfit = buildOutfit(state.studio);
+          saveState(); renderStudio(); return;
+        }
+        const wBtn = e.target.closest('[data-set-weather]');
+        if (wBtn) {
+          state.studio.weather = wBtn.dataset.setWeather;
+          state.studio.outfit = buildOutfit(state.studio);
+          saveState(); renderStudio(); return;
+        }
+
+        const lockBtn = e.target.closest('[data-lock-slot]');
+        if (lockBtn) {
+          const cat = lockBtn.dataset.lockSlot;
+          state.studio.locks[cat] = !state.studio.locks[cat];
+          saveState(); renderStudio(); return;
+        }
+        const swapBtn = e.target.closest('[data-swap-slot]');
+        if (swapBtn) {
+          const cat = swapBtn.dataset.swapSlot;
+          if (state.studio.virtualItem && state.studio.virtualItem.category === cat) {
+            showToast('Sanal deneme parçasını değiştirmek için denemeden çık.');
+            return;
+          }
+          const next = pickSlotItem(cat, state.studio, state.studio.outfit[cat]);
+          if (next) {
+            state.studio.outfit[cat] = next.id;
+            saveState(); renderStudio();
+          } else {
+            showToast('Bu kategoride başka temiz parça yok.');
+          }
+          return;
+        }
+
+        const emBtn = e.target.closest('[data-pick-emerg]');
+        if (emBtn) {
+          const opt = emergencyOptions[Number(emBtn.dataset.pickEmerg)];
+          if (opt) {
+            state.studio.virtualItem = null;
+            state.studio.outfit = clone(opt.outfit);
+            state.studio.locks = {};
+            closeModal('modal-emergency');
+            switchTab('studio');
+            showToast('⚡ Garanti kombin Stüdyoya yüklendi!');
+          }
+          return;
+        }
+
+        const loadFav = e.target.closest('[data-load-fav]');
+        if (loadFav) {
+          const f = state.favorites.find(x => x.id === loadFav.dataset.loadFav);
+          if (f) {
+            state.studio.virtualItem = null;
+            state.studio.occasion = f.occasion;
+            state.studio.weather = f.weather || 'Serin / Rüzgarlı';
+            state.studio.outfit = clone(f.outfit);
+            state.studio.locks = {};
+            switchTab('studio');
+          }
+          return;
+        }
+        const delFav = e.target.closest('[data-del-fav]');
+        if (delFav) {
+          state.favorites = state.favorites.filter(x => x.id !== delFav.dataset.delFav);
+          saveState(); renderDiscover(); return;
+        }
+
+        const wSub = e.target.closest('[data-wsub]');
+        if (wSub) {
+          state.wardrobeSub = wSub.dataset.wsub;
+          document.querySelectorAll('[data-wsub]').forEach(b => b.classList.toggle('active', b.dataset.wsub === state.wardrobeSub));
+          ['all', 'laundry', 'care'].forEach(k => document.getElementById('wsub-' + k).classList.toggle('hidden', k !== state.wardrobeSub));
+          renderWardrobe(); return;
+        }
+        const wCat = e.target.closest('[data-wcat]');
+        if (wCat) { state.wardrobeCat = wCat.dataset.wcat; renderWardrobe(); return; }
+
+        const togDirty = e.target.closest('[data-toggle-dirty]');
+        if (togDirty) {
+          const it = state.wardrobe.find(x => x.id === togDirty.dataset.toggleDirty);
+          if (it) {
+            it.dirty = !it.dirty;
+            saveState(); renderWardrobe();
+            showToast(it.dirty ? `${it.name} kirli sepetine atıldı.` : `${it.name} temize alındı.`);
+          }
+          return;
+        }
+        const delItem = e.target.closest('[data-del-item]');
+        if (delItem) {
+          state.wardrobe = state.wardrobe.filter(x => x.id !== delItem.dataset.delItem);
+          saveState(); renderWardrobe(); showToast('Parça silindi.'); return;
+        }
+        const cleanBtn = e.target.closest('[data-mark-cleaned]');
+        if (cleanBtn) {
+          const it = state.wardrobe.find(x => x.id === cleanBtn.dataset.markCleaned);
+          if (it) { it.cleanedAtWear = it.wearCount; saveState(); renderWardrobe(); showToast('Temizlik kaydedildi ✓'); }
+          return;
+        }
+        const heroBtn = e.target.closest('[data-make-hero]');
+        if (heroBtn) {
+          const it = state.wardrobe.find(x => x.id === heroBtn.dataset.makeHero);
+          if (!it) return;
+          if (it.dirty) { showToast('Bu parça kirli sepetinde, önce temize al.'); return; }
+          state.studio.virtualItem = null;
+          state.studio.heroId = it.id;
+          state.studio.location = 'Tümü';
+          state.studio.locks = { [it.category]: true };
+          state.studio.outfit = buildOutfit(state.studio);
+          saveState(); switchTab('studio');
+          showToast(`"${it.name}" odak parça olarak seçildi!`);
+          return;
+        }
+
+        const pSub = e.target.closest('[data-psub]');
+        if (pSub) {
+          state.plannerSub = pSub.dataset.psub;
+          document.querySelectorAll('[data-psub]').forEach(b => b.classList.toggle('active', b.dataset.psub === state.plannerSub));
+          ['weekly', 'suitcase'].forEach(k => document.getElementById('psub-' + k).classList.toggle('hidden', k !== state.plannerSub));
+          renderPlanner(); return;
+        }
+        const assignStudio = e.target.closest('[data-assign-studio]');
+        if (assignStudio) {
+          const day = assignStudio.dataset.assignStudio;
+          const occ = (state.weeklyPlan[day] && state.weeklyPlan[day].occasion) || state.studio.occasion;
+          const ev = evaluateOutfit(state.studio.outfit, occ, state.studio.weather);
+          state.weeklyPlan[day] = { occasion: occ, outfit: clone(state.studio.outfit), score: ev.total };
+          saveState(); renderPlanner(); showToast(`${day} gününe Stüdyo kombini atandı ✓`); return;
+        }
+        const assignRand = e.target.closest('[data-assign-random]');
+        if (assignRand) {
+          const day = assignRand.dataset.assignRandom;
+          const occ = (state.weeklyPlan[day] && state.weeklyPlan[day].occasion) || 'Günlük / Okul';
+          const outfit = buildOutfit({ occasion: occ, weather: state.studio.weather, palette: 'Dengeli', location: 'Tümü' });
+          state.weeklyPlan[day] = { occasion: occ, outfit, score: evaluateOutfit(outfit, occ, state.studio.weather).total };
+          saveState(); renderPlanner(); return;
+        }
+        const packItem = e.target.closest('[data-toggle-pack]');
+        if (packItem && state.suitcase) {
+          const found = state.suitcase.items.find(x => x.id === packItem.dataset.togglePack);
+          if (found) { found.packed = !found.packed; saveState(); renderSuitcase(); }
+          return;
+        }
+
+        const rTry = e.target.closest('[data-radar-try]');
+        if (rTry) { const r = computeMissingRadar()[Number(rTry.dataset.radarTry)]; if (r) startVirtualTryOn(r); return; }
+        const rSrc = e.target.closest('[data-radar-source]');
+        if (rSrc) { const r = computeMissingRadar()[Number(rSrc.dataset.radarSource)]; if (r) openSourcingModal(r); return; }
+        const rWish = e.target.closest('[data-radar-wish]');
+        if (rWish) {
+          const r = computeMissingRadar()[Number(rWish.dataset.radarWish)];
+          if (r) {
+            if (state.wishlist.some(x => x.name === r.name)) { showToast('Bu parça zaten listende mevcut.'); return; }
+            state.wishlist.unshift({ id: 'w_' + Date.now(), name: r.name, category: r.category, fit: r.fit, color: r.color, hex: r.hex, price: r.price, tip: r.tip });
+            saveState(); updateBadges();
+            if (state.activeTab === 'sourcing') renderSourcing();
+            showToast(`"${r.name}" alınacaklara eklendi ✓`);
+          }
+          return;
+        }
+
+        const wTry = e.target.closest('[data-wish-try]');
+        if (wTry) { const w = state.wishlist.find(x => x.id === wTry.dataset.wishTry); if (w) startVirtualTryOn(w); return; }
+        const wSrc = e.target.closest('[data-wish-source]');
+        if (wSrc) { const w = state.wishlist.find(x => x.id === wSrc.dataset.wishSource); if (w) openSourcingModal(w); return; }
+        const wDel = e.target.closest('[data-del-wish]');
+        if (wDel) {
+          state.wishlist = state.wishlist.filter(x => x.id !== wDel.dataset.delWish);
+          saveState(); renderSourcing(); showToast('Listeden çıkarıldı.'); return;
+        }
+        const wBuy = e.target.closest('[data-wish-buy]');
+        if (wBuy) {
+          const w = state.wishlist.find(x => x.id === wBuy.dataset.wishBuy);
+          if (w) {
+            state.wardrobe.unshift({
+              id: 'it_' + Date.now(),
+              name: w.name, category: w.category, fit: w.fit || 'Regular',
+              color: w.color || 'Nötr', hex: w.hex || '#141413',
+              location: 'Ev 1', season: 'Dört Mevsim',
+              occasions: ['Günlük / Okul', 'Kahve', 'Date'],
+              price: Number(w.price) || 0, wearCount: 0, lastWornDays: 0, dirty: false,
+              care: w.tip || '30°C hassas yıkama.'
+            });
+            state.budgetSpent = (Number(state.budgetSpent) || 0) + (Number(w.price) || 0);
+            state.wishlist = state.wishlist.filter(x => x.id !== w.id);
+            if (state.studio.virtualItem && state.studio.virtualItem.name === w.name) state.studio.virtualItem = null;
+            saveState(); renderSourcing();
+            showToast(`🎉 "${w.name}" dolabına aktarıldı!`);
+          }
+          return;
+        }
+      });
+
+      document.body.addEventListener('change', e => {
+        if (e.target.matches('[data-day-occ]')) {
+          const day = e.target.dataset.dayOcc;
+          const occ = e.target.value;
+          const outfit = buildOutfit({ occasion: occ, weather: state.studio.weather, palette: 'Dengeli', location: 'Tümü' });
+          state.weeklyPlan[day] = { occasion: occ, outfit, score: evaluateOutfit(outfit, occ, state.studio.weather).total };
+          saveState(); renderPlanner();
+        }
+      });
+
+      /* ------------------------------------------------------------------
+         17. BOOTSTRAP
+         ------------------------------------------------------------------ */
+      loadState();
+      if (!state.studio.outfit || !Object.keys(state.studio.outfit).length) {
+        state.studio.outfit = buildOutfit(state.studio);
+      }
+      switchTab(state.activeTab || 'studio');
+    });
+  </script>
+</body>
+</html>
